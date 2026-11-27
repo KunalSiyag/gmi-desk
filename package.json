@@ -1,0 +1,79 @@
+{
+  "name": "gmi-desk",
+  "productName": "GMI Desk",
+  "version": "0.1.0",
+  "description": "A desktop client for GMI Cloud: sign in once, browse the live model catalog, chat, generate media and track usage.",
+  "author": "Kunal Siyag",
+  "homepage": "https://github.com/kunalsiyag/gmi-desk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kunalsiyag/gmi-desk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kunalsiyag/gmi-desk/issues"
+  },
+  "keywords": [
+    "gmi-cloud",
+    "electron",
+    "desktop",
+    "llm",
+    "chat",
+    "mcp",
+    "t3-code"
+  ],
+  "private": true,
+  "license": "MIT",
+  "main": "dist-electron/main.cjs",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:mock": "GMI_DESK_MOCK=1 node scripts/dev.mjs",
+    "build": "vite build && node scripts/build-electron.mjs",
+    "build:electron": "node scripts/build-electron.mjs",
+    "start": "electron .",
+    "start:mock": "GMI_DESK_MOCK=1 electron .",
+    "typecheck": "tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.web.json --noEmit && tsc -p tsconfig.test-web.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "shots": "node scripts/screenshots.mjs --name default",
+    "check": "npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": {
+    "@base-ui/react": "1.9.0",
+    "@fontsource-variable/geist-mono": "5.3.0",
+    "@fontsource-variable/inter": "5.3.0",
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "@tanstack/react-query": "5.105.0",
+    "@xterm/addon-fit": "0.11.0",
+    "@xterm/xterm": "6.0.0",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "cmdk": "1.1.1",
+    "lucide-react": "1.66.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-markdown": "10.1.0",
+    "remark-gfm": "4.0.1",
+    "sonner": "2.0.8",
+    "tailwind-merge": "3.7.0",
+    "ws": "8.22.0",
+    "zod": "4.6.7",
+    "zustand": "5.0.16"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.3.3",
+    "@types/node": "22.20.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "electron": "45.2.1",
+    "esbuild": "0.28.2",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2",
+    "vite": "8.3.5",
+    "vitest": "5.0.5"
+  }
+}

@@ -1,0 +1,20 @@
+node_modules/
+dist/
+dist-electron/
+release/
+coverage/
+/screenshots/
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+.agent-builds/
+.review/
+
+# Maintainer-only (kept locally, never published)
+CLAUDE.local.md
+AGENTS.local.md
+docs/history/
+.claude/settings.local.json
+.claude/swarm-*

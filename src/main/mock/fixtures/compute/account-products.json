@@ -1,0 +1,25 @@
+{
+  "_note": "Synthetic per-IDC answers of GET /api/v1/containers/products?idc= and /api/v1/elastic-ips/products?idc= (the org's launchable set), and GET /api/v1/templates (org templates; credentials never included).",
+  "containers": {
+    "asia-east-taiwan3": [
+      { "idc": "asia-east-taiwan3", "name": "gmi.container.nv.H200x1.tw3", "type": "Container", "price": 3350000, "valid": true, "spec": { "gpu": 1, "cpu": 24, "memory": 220, "disk": 2048 }, "gpuModel": "H200", "productLine": "Container" },
+      { "idc": "asia-east-taiwan3", "name": "gmi.container.nv.H200x8.tw3", "type": "Container", "price": 26800000, "valid": true, "spec": { "gpu": 8, "cpu": 192, "memory": 1760, "disk": 16384 }, "gpuModel": "H200", "productLine": "Container" }
+    ],
+    "asia-east-taiwan1": [
+      { "idc": "asia-east-taiwan1", "name": "gmi.container.nv.H100x1.tw1", "type": "Container", "price": 2750000, "valid": true, "spec": { "gpu": 1, "cpu": 16, "memory": 180, "disk": 1024 }, "gpuModel": "H100", "productLine": "Container" }
+    ],
+    "us-central-iowa1": [
+      { "idc": "us-central-iowa1", "name": "gmi.container.intel.x4660.large", "type": "Container", "price": 47500, "valid": true, "spec": { "cpu": 4, "memory": 16, "disk": 100 }, "gpuModel": "CPU-only", "productLine": "Container" }
+    ]
+  },
+  "eips": {
+    "asia-east-taiwan1": [ { "idc": "asia-east-taiwan1", "name": "gmi.eip.sole.shared", "type": "EIP", "price": 100000, "valid": true, "spec": {} } ],
+    "asia-east-taiwan3": [ { "idc": "asia-east-taiwan3", "name": "gmi.eip.sole.shared", "type": "EIP", "price": 100000, "valid": true, "spec": {} } ]
+  },
+  "templates": [
+    { "id": "00000000-0000-4000-8000-00000000a101", "official": false, "orgId": "00000000-0000-0000-0000-000000000000", "name": "team-notebook", "path": "registry.example.invalid/team/notebook:1.4", "status": "published" }
+  ],
+  "sshKeys": [
+    { "id": "00000000-0000-4000-8000-00000000c001", "name": "laptop", "fingerprint": "SHA256:mockmockmockmockmockmockmockmockmockmockmoc", "createdAt": 1793836800 }
+  ]
+}

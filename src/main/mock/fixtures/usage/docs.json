@@ -1,0 +1,132 @@
+{
+  "recorded": "2026-10-31 from MCP search_docs (public documentation; excerpts kept raw so mock mode exercises the cleaner)",
+  "generic": ["https://docs.gmicloud.ai/index", "https://docs.gmicloud.ai/inference-engine/gmi-router/gmi-router-overview", "https://docs.gmicloud.ai/inference-engine/api-reference/rate-limit"],
+  "results": [
+    {
+      "keywords": ["router", "gmi router", "autoroute", "routing", "auto", "playground", "model selection"],
+      "excerpt": "The GMI Router turns a plain-language request into the right model for the job. Send a chat, and the router picks the model and returns a completion, automatically.\n\nAccess the playground here: [https://console.gmicloud.ai/user-console/ie/gmi-router/test-routing](https://console.gmicloud.ai/user-console/ie/gmi-router/test-routing)\n\n<img src=\"https://mintcdn.com/gmicloud/sjCgJNK4c7I1nIHE/images/GMI-Router-ui.gif?s=37e4eebb535e5e56e7c1f841ada6c33a\" alt=\"GMI Router Ui\" data-og-width=\"1280\" width=\"1280\" data-og-height=\"720\" height=\"720\" data-path=\"images/GMI-Router-ui.gif\" data-optimize=\"true\" data-opv=\"3\" />",
+      "title": "GMI Router Overview",
+      "url": "https://docs.gmicloud.ai/inference-engine/gmi-router/gmi-router-overview"
+    },
+    {
+      "keywords": ["mcp", "claude", "claude code", "connect", "server", "router"],
+      "excerpt": "## **Step 3. Confirm it worked**\n\n```bash theme={null}\nclaude mcp list\n```\n\nLook for a line reporting `gmi` connected over `http`. Inside a running Claude Code session, type `/mcp` and pick the server to see its connection state and the tools it offers.\n\nThen ask something that touches nothing and costs nothing:\n\n> What video models does GMI have?\n\nIf a list of models comes back, everything above worked.",
+      "title": "Step 3. Confirm it worked",
+      "url": "https://docs.gmicloud.ai/mcp/gmi-mcp-server#step-3-confirm-it-worked"
+    },
+    {
+      "keywords": ["overview", "products", "gmi cloud", "inference", "compute", "gpu", "studio", "agentbox", "welcome"],
+      "excerpt": "## Products\n\n<CardGroup cols={2}>\n  <Card title=\"Inference\" icon=\"bolt\" href=\"/inference-engine/ie-intro\">\n    Serverless and Dedicated endpoints for chat, vision, image, video, and audio models. OpenAI-compatible APIs.\n  </Card>\n\n  <Card title=\"GPU Compute\" icon=\"microchip\" href=\"/cluster-engine\">\n    Managed Kubernetes clusters, container instances, and bare-metal servers on H200 and B200 GPUs.\n  </Card>\n\n  <Card title=\"GMI Studio\" icon=\"diagram-project\" href=\"/gmi-studio/gmi-studio-user-manual/introduction\">\n    Visual workflow builder. Connect models with nodes to make multi-step pipelines for media and text.\n  </Card>\n\n  <Card title=\"GMI Agentbox\" icon=\"robot\" href=\"/agentbox-marketplace/overview\">\n    Marketplace of ready-to-use AI agents. Browse, use, or publish your own.\n  </Card>\n</CardGroup>",
+      "title": "Welcome to GMI Cloud",
+      "url": "https://docs.gmicloud.ai/index"
+    },
+    {
+      "keywords": ["agentbox", "sandbox", "sdk", "configure", "api key", "compute", "idc"],
+      "excerpt": "## Configure\n\nUse environment variables or pass values directly.\n\nTo get an API key, log in to `https://console.gmicloud.ai/`. In the **Compute** panel, open **Access** → **API Keys** and click **Create API key**.\n\n```bash theme={null}\nexport GMI_SANDBOX_API_KEY=\"your-api-key\"\n```\n\nSet `GMI_SANDBOX_IDC_NAME` (or pass `idc_name`) to choose the IDC for creating sandboxes and templates and for listing product specifications. Sandbox and template creation fall back to your organization's default IDC when neither is set (400 `idc_name is required` if it has none); listing product specifications always needs an IDC:\n\n```bash theme={null}\nexport GMI_SANDBOX_IDC_NAME=\"us-central-iowa16\"\n```",
+      "title": "Configure",
+      "url": "https://docs.gmicloud.ai/agentbox-api/sandbox-sdk/usage#configure"
+    },
+    {
+      "keywords": ["rate", "rate limit", "rate limits", "limit", "limits", "tpm", "rph", "429", "throttle"],
+      "excerpt": "To maintain system stability and equitable access, our API enforces rate limiting, controlling how frequently an organization can send requests within a certain time window.\n\nAPI rate limits are defined in two ways:\n\n* **TPM (Tokens per Minute)** for LLM models\n* **RPH (Requests per Hour)** for video models\n\nThese limits are enforced at the organization level.",
+      "title": "Rate limits",
+      "url": "https://docs.gmicloud.ai/inference-engine/api-reference/rate-limit"
+    },
+    {
+      "keywords": ["agentbox", "limits", "rate limits", "sandbox", "errors", "upload"],
+      "excerpt": "## Limits\n\n| Item              | Current behavior                                                      | What to do                                                                      |\n| ----------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------- |\n| Sandbox start     | A new sandbox is `pending` for a short time before `running`          | Call `wait_until_running` before commands or file transfers                     |\n| Default lifetime  | 24 hours if `timeout_seconds` is not set                              | Set `timeout_seconds` in tests; adjust with `set_timeout`                       |\n| Command wait      | A synchronous `execute` waits at most 25 seconds                      | Use `wait=False` and poll with `get_execution`                                  |\n| Command output    | `stdout` and `stderr` each return at most 1 MiB                       | Write output to a file and download it                                          |\n| Upload size       | About 500 MB per upload; larger returns 413                           | Split the file, or download it from ins [truncated]",
+      "title": "Errors and limits",
+      "url": "https://docs.gmicloud.ai/agentbox-sdk/errors-and-limits"
+    },
+    {
+      "keywords": ["api key", "api keys", "key", "keys", "console", "revoke", "create"],
+      "excerpt": "Create and revoke API keys used by external clients and SDKs to call GMI Cloud Inference.\n\nURL: `https://console.gmicloud.ai/user-setting/api-keys`\n\n<Frame>\n  <img src=\"https://mintcdn.com/gmicloud/wwBqG4D8qH5TFQuz/images/account-api-keys.png?fit=max&auto=format&n=wwBqG4D8qH5TFQuz&q=85&s=22325661d4b3d6aaac06f9d6ba1bb523\" alt=\"API Key Management\" data-og-width=\"1749\" width=\"1749\" data-og-height=\"954\" height=\"954\" data-path=\"images/account-api-keys.png\" data-optimize=\"true\" data-opv=\"3\" srcset=\"https://mintcdn.com/gmicloud/wwBqG4D8qH5TFQuz/images/account-api-keys.png?w=280&fit=max&auto=format&n=wwBqG4D8qH5TFQuz&q=85&s=1d96a8fc845b75769f6bb158fee70ab2 280w, https://mintcdn.com/gmicloud/wwBqG4D8qH5TFQuz/images/account-api-keys.png?w=560&fit=max&auto=format&n=wwBqG4D8qH5TFQuz&q=85&s=7928a63985bb80478d46380c91ee5595 560w, https://mintcdn.com/gmicloud/wwBqG4D8qH5TFQuz/images/account-api-keys.png?w=840&fit=max&auto=format&n=wwBqG4D8qH5TFQuz&q=85&s=fc0d57b5edbf512246c6715b30af3dcd 840w, https://mintcdn.com/gmicloud/wwBqG4D8qH5TFQuz/images/account-api-keys.png?w=1100&fit=max&auto=format&n=wwBqG4D8qH5TFQuz&q=85&s=719b649cdf9c91f370b5ba70a2524ac4 1100w, https://mintcdn.com/gmicloud/wwBqG4D8qH5 [truncated]",
+      "title": "API Keys",
+      "url": "https://docs.gmicloud.ai/cluster-engine/user-management/api-keys"
+    },
+    {
+      "keywords": ["api key", "api keys", "credentials", "key", "organization"],
+      "excerpt": "### Step 2: Obtain API Credentials\n\n1. Navigate to **Organization Settings** in your console\n2. Go to the **API Keys** section\n3. **Create a new API key** for programmatic access\n4. **Save your API key** securely (it will only be shown once)",
+      "title": "Step 2: Obtain API Credentials",
+      "url": "https://docs.gmicloud.ai/api-reference/introduction#step-2-obtain-api-credentials"
+    },
+    {
+      "keywords": ["api key", "api keys", "create", "scope", "ie_model", "ce_resource", "rest"],
+      "excerpt": "Create an API key\nAllows a user to generate an API key for their organization.\n\nREST Endpoint POST /organizations/{orgId}/api-keys\nSummary: Create an API key\nDescription: Allows a user to generate an API key for their organization.\nPath parameters:\n- orgId: type string<uuid>; required; description The organization's ID.\n- Must be a valid UUID.\n\nRequest body:\nDescription: The API key creation request.\nContent type: application/json\n- name: type string; required; description The API key name.\n- scope: type enum<string>; description The API key scope. Default value is `ie_model`.; enum ie_model, ce_resource\n- expiresAt: type integer; description The UNIX timestamp when API key will expire (UTC).\n- Must be a UNIX timestamp in seconds and must be greater than the current time.\n- If not set, the key will not expire.\n\nResponses:\n201: Successfully created an API key.\nContent type: application/json\n- key: type string; required; description The generated API key (returned only once).\n400: - [group:**request**, code:**0**]: Invalid field in the request.\n- [group:**request**, code:**1**]: The request body is required.\n- [group:**api-key**, code:**0**]: The organization has reached the maximum [truncated]",
+      "title": "Create an API key",
+      "url": "https://docs.gmicloud.ai/api-reference/organizations/create-an-api-key"
+    },
+    {
+      "keywords": ["studio", "workflow", "workflows", "nodes", "image", "reve"],
+      "excerpt": "Image generation and editing nodes for GMI Studio workflows.\n\n| Node                                                       | Model                      |\n| ---------------------------------------------------------- | -------------------------- |\n| [Reve Create](/gmi-studio/nodes/image/reve-create)         | `reve-create-20250915`     |\n| [Reve Edit](/gmi-studio/nodes/image/reve-edit)             | `reve-edit-20250915`       |\n| [Reve Edit Fast](/gmi-studio/nodes/image/reve-edit-fast)   | `reve-edit-fast-20251030`  |\n| [Reve Remix](/gmi-studio/nodes/image/reve-remix)           | `reve-remix-20250915`      |\n| [Reve Remix Fast](/gmi-studio/nodes/image/reve-remix-fast) | `reve-remix-fast-20251030` |",
+      "title": "Image Nodes",
+      "url": "https://docs.gmicloud.ai/gmi-studio/nodes/image/overview"
+    },
+    {
+      "keywords": ["studio", "workflow", "workflows", "nodes", "video", "kling", "video models"],
+      "excerpt": "Text-to-video, image-to-video, and editing nodes for GMI Studio workflows.\n\n| Node                                                                             | Model                                                             |\n| -------------------------------------------------------------------------------- | ----------------------------------------------------------------- |\n| [Kling Text-to-Video](/gmi-studio/nodes/video/kling-text-to-video)               | `Kling Text-to-Video (GMI API)`                                   |\n| [Kling Image2Video](/gmi-studio/nodes/video/kling-image2video)                   | `Kling Image-to-Video (GMI API)`                                  |\n| [Kling 2\\_6 Motion Control](/gmi-studio/nodes/video/kling-2-6-motion-control)    | `Kling 2.6 Motion Control`                                        |\n| [Kling Reference To Video](/gmi-studio/nodes/video/kling-reference-to-video)     | `Kling Reference-to-Video`                                        |\n| [Kling V3 Image To Video](/gmi-studio/nodes/video/kling-v3-image-to-video)       | `Kling V3 Image-to-Video`                                         |\n| [Kling V3 Text To Video](/gmi-studio/nodes/video/kl [truncated]",
+      "title": "Video Nodes",
+      "url": "https://docs.gmicloud.ai/gmi-studio/nodes/video/overview"
+    },
+    {
+      "keywords": ["studio", "workflow", "workflows", "video", "avatar", "minimetalks"],
+      "excerpt": "**Model ID**\n\n```bash theme={null}\nGMI-MiniMeTalks-Workflow\n```\n\n**Calling method:** async\n\nMiniMeTalks combines Seedream 4.0 and WAN 2.5 in a two-stage AI pipeline to create lively, music-synchronized mini avatars. In Step 1, Seedream 4.0 builds a cohesive 3D “bottle world,” blending uploaded portraits into a realistic miniature avatar with consistent lighting and perspective. In Step 2, WAN 2.5 animates the avatar with lip-sync, expressive motion, and rhythm-based choreography, matching the tone and beat of the selected music.The workflow supports customizable duration, cinematic 768 P output, and is ideal for personalized digital performances, creative storytelling, and social sharing.",
+      "title": "GMI-MiniMeTalks-Workflow",
+      "url": "https://docs.gmicloud.ai/model-quickstarts/video/gmi-minimetalks-workflow"
+    },
+    {
+      "keywords": ["billing", "payment", "auto pay", "autopay", "credits", "top up", "card"],
+      "excerpt": "## Payment settings\n\nThe **Auto Pay Enable** toggle. When on, GMI reloads credits up to once per hour as your balance approaches the auto-pay threshold, using your default saved card.\n\n<Note>\n  When your balance nears your auto-pay threshold, we will attempt to reload GMI credits by billing your default saved card max once per hour for the configured top-up amount.\n</Note>",
+      "title": "Payment settings",
+      "url": "https://docs.gmicloud.ai/cluster-engine/user-management/account#payment-settings"
+    },
+    {
+      "keywords": ["billing", "credits", "credit", "top up", "top-up", "bonus", "rebate"],
+      "excerpt": "### **2. Credit Bundle**\n\n* Introduced a **first top-up** bonus:\n  * First top-up ≥ \\$50 → +\\$3 credit\n  * Available once per account lifetime\n  * Bonus expires in 90 days\n* Introduced **cumulative** top-up grade rebates:\n  * \\$200 cumulative top-up → +\\$16 credit\n  * \\$500 cumulative top-up → +\\$50 credit\n  * \\$2,500 cumulative top-up → +\\$300 credit\n  * \\$10,000 cumulative top-up → +\\$1,500 credit\n* This update is designed to improve first-payment conversion and reward continued deposits.",
+      "title": "2. Credit Bundle",
+      "url": "https://docs.gmicloud.ai/inference/console-release-notes/06-24-2026-change-log--#2-credit-bundle"
+    },
+    {
+      "keywords": ["billing", "invoices", "invoice", "usage", "payment methods"],
+      "excerpt": "Billing\nView invoices, payment methods, and current usage for your GMI Cloud account.",
+      "title": "Billing",
+      "url": "https://docs.gmicloud.ai/cluster-engine/user-management/billing"
+    },
+    {
+      "keywords": ["video", "video models", "models", "text-to-video", "image-to-video", "duration", "resolution"],
+      "excerpt": "Video models cover text-to-video, image-to-video, reference-guided generation, editing, avatars, and post-processing. Check each model for supported resolutions, durations, and control inputs (first/last frame, reference video, etc.).",
+      "title": "Video Models",
+      "url": "https://docs.gmicloud.ai/model-quickstarts/video/about"
+    },
+    {
+      "keywords": ["video", "video models", "duration", "resolution", "gemini", "omni", "aspect ratio"],
+      "excerpt": "## Capabilities & limits (public preview)\n\n* Duration: 3-10s (1s increments) or `auto`; Resolution: 720p; Aspect ratio: `auto`, 16:9 or 9:16\n* With a `video` input the output follows the source clip — set `durationSeconds` to `auto` (or omit it); an explicit duration that doesn't match the source is rejected by the model\n* Up to 5 reference images; input video up to 10s\n* Not yet supported: audio references, last-frame guidance, scene extension",
+      "title": "Capabilities & limits (public preview)",
+      "url": "https://docs.gmicloud.ai/model-quickstarts/video/gemini-omni-1-1-flash-preview#capabilities-&-limits-public-preview"
+    },
+    {
+      "keywords": ["video", "video models", "wan", "duration", "resolution", "480p"],
+      "excerpt": "## Video Specifications\n\n* **Duration**: 5-10 seconds\n* **Resolution**: Fixed at 480P (832x480)\n* **Quality**: Excellent quality optimized for fast generation",
+      "title": "Video Specifications",
+      "url": "https://docs.gmicloud.ai/model-quickstarts/video/wan-ai-wan2-1-i2v-14b-480p#video-specifications"
+    },
+    {
+      "keywords": ["agentbox", "agent", "agents", "deploy", "overview", "marketplace"],
+      "excerpt": "Agentbox is GMI Cloud's platform for deploying and distributing AI agents.\n\nRegister a template to run on GMI, or connect an agent you host and use GMI Models for inference. Keep it private, or list it in the Agent Marketplace so others can deploy their own copy.",
+      "title": "Overview",
+      "url": "https://docs.gmicloud.ai/agentbox-marketplace/overview"
+    },
+    {
+      "keywords": ["agentbox", "agent", "marketplace", "list", "publish", "template"],
+      "excerpt": "**Navigate to:** My Agents → **List an agent**, or a template's **Listing ▾ → Publish**\n\nListing puts your template in the Agent Marketplace. Users click **Deploy your own** to copy it into their account and pay their own compute.\n\n<Frame>\n  <img src=\"https://mintcdn.com/gmicloud/m7suRF3FO6FBhvc2/images/GMI-AgentBox-list-an-agent-form.jpg?fit=max&auto=format&n=m7suRF3FO6FBhvc2&q=85&s=472961be97ee47ffd8b8173e5f6f5733\" alt=\"List an Agent form\" data-og-width=\"1355\" width=\"1355\" data-og-height=\"763\" height=\"763\" data-path=\"images/GMI-AgentBox-list-an-agent-form.jpg\" data-optimize=\"true\" data-opv=\"3\" srcset=\"https://mintcdn.com/gmicloud/m7suRF3FO6FBhvc2/images/GMI-AgentBox-list-an-agent-form.jpg?w=280&fit=max&auto=format&n=m7suRF3FO6FBhvc2&q=85&s=bf58037c2443df37b7ea1f6190475f35 280w, https://mintcdn.com/gmicloud/m7suRF3FO6FBhvc2/images/GMI-AgentBox-list-an-agent-form.jpg?w=560&fit=max&auto=format&n=m7suRF3FO6FBhvc2&q=85&s=77cc24392c41554acb22977602c3d2ec 560w, https://mintcdn.com/gmicloud/m7suRF3FO6FBhvc2/images/GMI-AgentBox-list-an-agent-form.jpg?w=840&fit=max&auto=format&n=m7suRF3FO6FBhvc2&q=85&s=89d93f54adc12689b2679da083ffdd49 840w, https://mintcdn.com/gmicloud/m7suRF3FO6FBhvc2/ima [truncated]",
+      "title": "List an agent",
+      "url": "https://docs.gmicloud.ai/agentbox-marketplace/list-an-agent"
+    },
+    {
+      "keywords": ["agentbox", "agent", "agents", "marketplace", "search", "verified"],
+      "excerpt": "## Finding the right agent\n\n| Control           | Use it when                                                                                                                                                 |\n| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Category tabs     | You're browsing. **Recommended** (default) · Code & Dev Tools · Data & Analytics · Customer Support · Content & Marketing · Research & Knowledge · **All**. |\n| **Verified Only** | Limits results to agents meeting all four Verified criteria.                                                                                                |\n\nEach result is a card: logo (or the first two letters of the name), agent name, publisher (with a blue check for Verified publishers), one-line description, category, and tags.",
+      "title": "Search and use an agent",
+      "url": "https://docs.gmicloud.ai/agentbox-marketplace/search-and-use"
+    }
+  ]
+}

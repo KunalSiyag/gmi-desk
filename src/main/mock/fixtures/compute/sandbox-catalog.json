@@ -1,0 +1,16 @@
+{
+  "_note": "Synthetic answers of GET /api/v2/products?idc_name=&resource_type=sandbox (no price: priced from the public gmi.sandbox.* SKUs) and GET /api/v2/templates?idc_name=.",
+  "products": {
+    "us-central-iowa2": [
+      { "resource_type": "sandbox", "product": "gmi.sandbox.small", "name": "SMALL", "status": "active", "resources": { "cpu_count": 2, "memory_mb": 4096, "disk_size_mb": 20480, "architecture": "x86_64" } },
+      { "resource_type": "sandbox", "product": "gmi.sandbox.medium", "name": "MEDIUM", "status": "active", "resources": { "cpu_count": 2, "memory_mb": 8192, "disk_size_mb": 40960, "architecture": "x86_64" } },
+      { "resource_type": "sandbox", "product": "gmi.sandbox.large", "name": "LARGE", "status": "unavailable", "resources": { "cpu_count": 4, "memory_mb": 8192, "disk_size_mb": 81920, "architecture": "x86_64" } }
+    ]
+  },
+  "templates": {
+    "us-central-iowa2": [
+      { "id": "tpl-mock-python", "name": "python-3.12", "idc_name": "us-central-iowa2", "status": "ready", "source_type": "image", "resources": { "cpu_count": 2, "memory_mb": 4096, "disk_size_mb": 20480, "architecture": "x86_64" }, "latest_build_id": "bld-mock-1", "latest_build_status": "ready", "created_at": "2026-10-01T00:00:00Z", "updated_at": "2026-10-01T00:00:00Z" },
+      { "id": "tpl-mock-node", "name": "node-22", "idc_name": "us-central-iowa2", "status": "ready", "source_type": "image", "resources": { "cpu_count": 2, "memory_mb": 4096, "disk_size_mb": 20480, "architecture": "x86_64" }, "latest_build_id": "bld-mock-2", "latest_build_status": "ready", "created_at": "2026-10-01T00:00:00Z", "updated_at": "2026-10-01T00:00:00Z" }
+    ]
+  }
+}

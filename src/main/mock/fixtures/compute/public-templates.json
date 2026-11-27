@@ -1,0 +1,9 @@
+{
+  "_note": "Synthetic official templates in the shape of GET /api/v1/public/templates (no credential field).",
+  "templates": [
+    { "id": "00000000-0000-4000-8000-00000000a001", "official": true, "orgId": "00000000-0000-0000-0000-000000000000", "name": "JupyterLab (PyTorch, CUDA 12)", "path": "docker.io/gmicloudai/jupyterlab-pytorch:v2", "description": "JupyterLab with PyTorch and CUDA 12. SSH on 22, Jupyter on 8888.", "status": "published" },
+    { "id": "00000000-0000-4000-8000-00000000a002", "official": true, "orgId": "00000000-0000-0000-0000-000000000000", "name": "vLLM server", "path": "docker.io/gmicloudai/vllm:v2", "description": "OpenAI-compatible vLLM server.", "status": "published" },
+    { "id": "00000000-0000-4000-8000-00000000a003", "official": true, "orgId": "00000000-0000-0000-0000-000000000000", "name": "SGLang server", "path": "docker.io/gmicloudai/sglang:v2", "description": "SGLang inference server.", "status": "published" },
+    { "id": "00000000-0000-4000-8000-00000000a004", "official": true, "orgId": "00000000-0000-0000-0000-000000000000", "name": "Ubuntu 22.04 (CUDA 12)", "path": "docker.io/gmicloudai/ubuntu-cuda:v2", "description": "A plain Ubuntu image with CUDA 12 and SSH.", "status": "published" }
+  ]
+}

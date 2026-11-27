@@ -1,0 +1,11 @@
+{
+  "_note": "Synthetic (compute.md §16): written by hand to the documented schema of GET /api/v1/idcs; never copied from a live response.",
+  "idcs": [
+    { "idcId": "asia-east-taiwan1", "name": "Taiwan 1", "country": "TW", "countrySubdivision": "", "status": "available" },
+    { "idcId": "asia-east-taiwan3", "name": "Taiwan 3", "country": "TW", "countrySubdivision": "", "status": "available" },
+    { "idcId": "asia-southeast-singapore2", "name": "Singapore 2", "country": "SG", "countrySubdivision": "", "status": "full" },
+    { "idcId": "us-central-iowa1", "name": "Iowa 1", "country": "US", "countrySubdivision": "IA", "status": "available" },
+    { "idcId": "us-central-iowa2", "name": "Iowa 2", "country": "US", "countrySubdivision": "IA", "status": "available" },
+    { "idcId": "us-denver-1", "name": "Denver 1", "country": "US", "countrySubdivision": "CO", "status": "maintenance" }
+  ]
+}

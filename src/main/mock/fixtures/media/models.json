@@ -1,0 +1,243 @@
+{
+  "source": "GMI MCP get_model, recorded 2026-10-31. Long enum lists trimmed. No organisation data.",
+  "models": {
+    "hy-image-v3.5-preview": {
+      "available": true,
+      "description": "Hy-Image-3.5-Preview is Tencent Hunyuan's image generation model, supporting text-to-image and reference-guided generation.",
+      "display_name": "Hy-Image-3.5-preview",
+      "kind": "multimodal",
+      "model_id": "hy-image-v3.5-preview",
+      "multimodal": {
+        "input": [{ "required": true, "type": "text" }, { "required": false, "type": "image" }],
+        "model_type": "image",
+        "output": [{ "required": true, "type": "image" }],
+        "pricing": { "price": 24000, "pricing_type": "per_request", "unit": "image" }
+      },
+      "parameters": [
+        { "default": "", "description": "Text prompt describing the image to create, or the edit to apply to the reference images.", "name": "prompt", "required": true, "type": "string" },
+        { "default": "", "description": "Optional reference image URLs (up to 5). Each must be under 20MB and reachable without authentication. Reference images do not affect price.", "max": 5, "name": "image", "required": false, "type": "image" },
+        { "default": "", "description": "Exact output dimensions. Leave on Auto to let the model choose a size from the prompt and the pixel budget. Sizes above 2K (over 4,194,304 pixels) are billed at the higher $0.032 rate.", "enum": ["", "1024x1024", "1536x1536", "2048x2048", "1920x1080", "1080x1920", "1536x1152", "1152x1536", "2560x1440", "1440x2560", "3840x2160", "2160x3840", "4096x4096"], "name": "size", "required": false, "type": "enum" },
+        { "default": 4194304, "description": "Pixel budget used when no Output Size is set. This is capped at 2k, so pick a higher size in size to go higher. Price is the same across all three tiers.", "enum": ["1.048576e+06", "2.359296e+06", "4.194304e+06"], "name": "generate_max_pixels", "required": false, "type": "enum" },
+        { "default": 0, "description": "Generation seed. Leave at 0 for a random seed; reuse a seed with the same prompt and size to reproduce a result.", "min": 0, "name": "seed", "required": false, "type": "integer" }
+      ],
+      "provider": "Tencent"
+    },
+    "seedream-5.0-pro": {
+      "available": true,
+      "description": "Byteplus's next generation image generation model, handling text, single image, and multi image inputs.",
+      "display_name": "seedream-5.0-pro",
+      "kind": "multimodal",
+      "model_id": "seedream-5.0-pro",
+      "multimodal": {
+        "input": [{ "required": true, "type": "text" }, { "required": false, "type": "image" }],
+        "model_type": "image",
+        "output": [{ "required": true, "type": "image" }],
+        "pricing": { "price": 85000, "pricing_type": "per image", "unit": "image" }
+      },
+      "parameters": [
+        { "default": "", "description": "Text prompt for image generation (recommended < 600 words).", "name": "prompt", "required": true, "type": "string" },
+        { "description": "Reference image URL or an array of URLs (jpeg/png). Up to 14 images are supported.", "max": 14, "name": "image", "required": false, "type": "image" },
+        { "default": "2048x2048", "description": "Method 1: '2K', '3K'. Method 2: 'WxH' (Total pixels: up to 4.19M; Aspect Ratio: 1/16 to 16).", "enum": ["2K", "3K", "1536x2720", "1664x2496", "1760x2352", "2048x2048", "2352x1760", "2496x1664", "2720x1536", "3120x1344"], "name": "size", "required": false, "type": "enum" },
+        { "default": "disabled", "description": "Generate a sequence of related images automatically.", "enum": ["disabled", "auto"], "name": "sequential_image_generation", "required": false, "type": "enum" },
+        { "default": 1, "description": "Total(reference+generated) ≤ 15.", "max": 15, "min": 1, "name": "max_images", "required": false, "type": "integer" },
+        { "default": "jpeg", "description": "Specifies the file format of the generated image.", "enum": ["jpeg", "png"], "name": "output_format", "required": false, "type": "enum" },
+        { "default": false, "description": "Whether to include an watermark saying AI Generated in the bottom right corner.", "name": "watermark", "required": false, "type": "boolean" }
+      ],
+      "provider": "ByteDance"
+    },
+    "gpt-image-2.5-flare-generate": {
+      "available": true,
+      "description": "GPT Image 2.5 Flare generates high-quality images from text prompts, with five quality tiers and transparent-background support.",
+      "display_name": "gpt-image-2.5-flare-generate",
+      "kind": "multimodal",
+      "model_id": "gpt-image-2.5-flare-generate",
+      "multimodal": {
+        "input": [{ "required": true, "type": "text" }],
+        "model_type": "image",
+        "output": [{ "required": true, "type": "image" }],
+        "pricing": { "price": 13250, "pricing_type": "per-image pricing", "unit": "image" }
+      },
+      "parameters": [
+        { "default": "", "description": "Text description of the image to generate.", "name": "prompt", "required": true, "type": "string" },
+        { "default": "1024x1024", "description": "Output resolution. Accepts \"auto\", the presets 1024x1024 / 1024x1536 / 1536x1024, or a custom WxH where both dimensions are multiples of 16, each edge <= 3840px, aspect ratio <= 3:1, and total pixels between 655,360 and 8,294,400.", "name": "size", "required": false, "type": "string" },
+        { "default": "medium", "description": "Image quality level — affects detail and cost. GPT Image 2.5 supports five tiers plus auto.", "enum": ["low", "medium", "high", "xhigh", "max", "auto"], "name": "quality", "required": false, "type": "enum" },
+        { "default": 1, "description": "Number of images to generate (1-10).", "max": 10, "min": 1, "name": "n", "required": false, "type": "integer" },
+        { "default": "png", "description": "File format of the generated image.", "enum": ["png", "jpeg", "webp"], "name": "output_format", "required": false, "type": "enum" },
+        { "default": 100, "description": "Compression level 0-100. Only valid for jpeg and webp output.", "max": 100, "min": 0, "name": "output_compression", "required": false, "type": "integer" },
+        { "default": "auto", "description": "Background handling. \"transparent\" produces an alpha channel and requires png or webp output.", "enum": ["transparent", "opaque", "auto"], "name": "background", "required": false, "type": "enum" },
+        { "default": "auto", "description": "Content moderation strictness.", "enum": ["auto", "low"], "name": "moderation", "required": false, "type": "enum" },
+        { "description": "Optional stable identifier for your end user, forwarded to OpenAI for abuse monitoring.", "name": "user", "required": false, "type": "string" }
+      ],
+      "provider": "OpenAI"
+    },
+    "kling-3.0-turbo-t2v": {
+      "available": true,
+      "description": "Kling AI's 3.0 text to video model.",
+      "display_name": "kling-3.0-turbo-t2v",
+      "kind": "multimodal",
+      "model_id": "kling-3.0-turbo-t2v",
+      "multimodal": {
+        "input": [{ "required": true, "type": "text" }],
+        "model_type": "video",
+        "output": [{ "required": true, "type": "video" }],
+        "pricing": { "price": 112000, "pricing_type": "per_second", "unit": "second" }
+      },
+      "parameters": [
+        { "default": "", "description": "Describe the motion and action (up to 2500 chars). Refer to https://app.klingai.com/global/quickstart/klingai-video-3-model-user-guide for more detail", "name": "prompt", "required": true, "type": "string" },
+        { "default": "720p", "description": "Choose between 720p or 1080p", "enum": ["720p", "1080p"], "name": "resolution", "required": false, "type": "enum" },
+        { "default": "16:9", "description": "Choose the video's aspect ratio", "enum": ["16:9", "9:16", "1:1"], "name": "aspect_ratio", "required": false, "type": "enum" },
+        { "default": "5", "description": "Total duration in seconds (3-15).", "enum": ["3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"], "name": "duration", "required": false, "type": "enum" }
+      ],
+      "provider": "Kling"
+    },
+    "wan3.0-video": {
+      "available": true,
+      "description": "Wan3.0 unified video model. One model for text-to-video, image-to-video, reference-to-video and video editing, with up to 30s duration, 480P-1080P output, adaptive aspect ratio and audio generated by default.",
+      "display_name": "wan3.0-video",
+      "kind": "multimodal",
+      "model_id": "wan3.0-video",
+      "multimodal": {
+        "input": [{ "required": true, "type": "text" }, { "required": false, "type": "image" }, { "required": false, "type": "video" }, { "required": false, "type": "audio" }],
+        "model_type": "video",
+        "output": [{ "required": true, "type": "video" }],
+        "pricing": { "price": 200000, "pricing_type": "video length based pricing", "unit": "second" }
+      },
+      "parameters": [
+        { "default": "", "description": "- The prompt describes the desired elements and visual features in the generated video.\n\n- Chinese and English are supported. Each Chinese character or letter counts as one character. Text exceeding the limit is automatically truncated.", "max": 5000, "name": "prompt", "required": true, "type": "string" },
+        { "default": "", "description": "- Describes content you do not want to appear in the video.\n\n- Chinese and English are supported. Limited to 500 characters; excess is truncated.\n\n- Example: low resolution, error, worst quality, deformed, extra fingers, bad proportions.", "max": 500, "name": "negative_prompt", "required": false, "type": "string" },
+        { "description": "Image used as the first frame of the generated video (image-to-video).\n\n- Must be a publicly reachable HTTP(S) URL.\n\n- Pair with `ratio: adaptive` to keep the source framing instead of forcing 16:9.", "name": "first_frame", "required": false, "type": "first_frame_image" },
+        { "description": "Image used as the last frame of the generated video. Combine with `first_frame` to interpolate between two stills.", "name": "last_frame", "required": false, "type": "last_frame_image" },
+        { "description": "Reference image(s) used to keep a subject, character or style consistent across the generated video.\n\n- Accepts a single URL or an array of URLs.\n\n- Up to 10 images.", "max": 10, "name": "reference_image", "required": false, "type": "image" },
+        { "description": "Reference video(s) used to guide motion or style.\n\n- Accepts a single URL or an array of URLs.\n\n- Up to 5 videos.", "max": 5, "name": "reference_video", "required": false, "type": "video" },
+        { "description": "The model will use this audio to drive the generated video.\n\n- Format: wav/mp3\n\n- If the audio is longer than the video duration, only the first N seconds are used.", "max": 5, "name": "audio_url", "required": false, "type": "audio" },
+        { "default": "1080P", "description": "Specifies the resolution tier for the generated video. Affects pricing.\n\n- **Case-sensitive**: send `480P`, `720P` or `1080P`. A lowercase value such as `720p` is rejected by the model and the request fails (and is refunded) instead of falling back.", "enum": ["480P", "720P", "1080P"], "name": "resolution", "required": false, "type": "enum" },
+        { "default": "adaptive", "description": "Specifies the aspect ratio of the generated video.\n\n- `adaptive` derives the framing from the input media, and behaves the same as `16:9` when there is no media input. It is the recommended default for this model because a single model serves text-to-video and image-to-video.", "enum": ["adaptive", "16:9", "9:16", "1:1", "4:3", "3:4"], "name": "ratio", "required": false, "type": "enum" },
+        { "default": 5, "description": "The duration of the generated video, in seconds. Affects pricing linearly.\n\n- Wan 3.0 supports a single generation of up to 30 seconds.\n\n- Note: 30 seconds at 1080P costs $6.00.", "max": 30, "min": 2, "name": "duration", "required": false, "type": "integer" },
+        { "default": true, "description": "Specifies whether to enable prompt rewriting. If enabled, a large language model (LLM) rewrites the input prompt to improve generation quality for shorter prompts, at the cost of slightly longer generation time.", "name": "prompt_extend", "required": false, "type": "boolean" },
+        { "default": false, "description": "Specifies whether to add a watermark. The watermark contains the fixed text `AI Generated` and is placed in the lower-right corner of the video.", "name": "watermark", "required": false, "type": "boolean" },
+        { "description": "- The random number seed in the range [0, 2147483647].\n\n- If not specified, the system automatically generates a random seed.\n\n- Note: because model generation is probabilistic, using the same seed does not guarantee identical results every time.", "max": 2147483647, "min": 0, "name": "seed", "required": false, "type": "integer" }
+      ],
+      "provider": "aliyun"
+    },
+    "happyhorse-1.1-i2v": {
+      "available": true,
+      "description": "HappyHorse 1.1 image to video (first frame). Animate any image into a video with strong motion coherence, improved facial texture fidelity, and native audio-video synchronization.",
+      "display_name": "happyhorse-1.1-i2v",
+      "kind": "multimodal",
+      "model_id": "happyhorse-1.1-i2v",
+      "multimodal": {
+        "input": [{ "required": false, "type": "text" }, { "required": true, "type": "image" }, { "required": false, "type": "audio" }],
+        "model_type": "video",
+        "output": [{ "required": true, "type": "video" }],
+        "pricing": { "price": 280000, "pricing_type": "video length based pricing", "unit": "second" }
+      },
+      "parameters": [
+        { "default": "", "description": "- The prompt describes the desired motion and visual features in the generated video.\n\n- Chinese and English are supported. Each Chinese character or letter counts as one character. Text exceeding the limit is automatically truncated.", "max": 1500, "name": "prompt", "required": false, "type": "string" },
+        { "description": "- Starting frame image for Image-to-Video generation.\n\n- Image resolution: width and height must be between 360 and 2,000 pixels.\n\n- File size: no more than 10 MB.", "max": 1, "name": "first_frame", "required": true, "type": "first_frame_image" },
+        { "default": "", "description": "Describes content you do not want to appear in the video. Chinese and English are supported. Limited to 500 characters.", "max": 500, "name": "negative_prompt", "required": false, "type": "string" },
+        { "default": "1080P", "description": "Specifies the resolution tier for the generated video. The aspect ratio is kept as consistent as possible with the input image. Affects pricing.", "enum": ["720P", "1080P"], "name": "resolution", "required": false, "type": "enum" },
+        { "default": 5, "description": "The duration of the generated video, in seconds. Affects pricing.", "max": 15, "min": 3, "name": "duration", "required": false, "type": "integer" },
+        { "default": true, "description": "Specifies whether to enable prompt rewriting using an LLM. Improves generation quality for shorter prompts but increases processing time.", "name": "prompt_extend", "required": false, "type": "boolean" },
+        { "default": true, "description": "Specifies whether to automatically add native audio to the generated video.", "name": "audio", "required": false, "type": "boolean" },
+        { "default": false, "description": "Specifies whether to add a watermark. The watermark contains the fixed text `AI Generated` and is placed in the lower-right corner of the video.", "name": "watermark", "required": false, "type": "boolean" },
+        { "description": "The random number seed. The value must be in the range of [0, 2147483647]. If not specified, the system automatically generates a random seed.", "max": 2147483647, "min": 0, "name": "seed", "required": false, "type": "integer" }
+      ],
+      "provider": "aliyun"
+    },
+    "luma-ray-3-2-generate": {
+      "available": true,
+      "description": "Luma Ray 3.2 video generation: text-to-video, image-to-video, video extend, and chain-referenced interpolation via the Luma Agents API.",
+      "display_name": "luma-ray-3-2-generate",
+      "kind": "multimodal",
+      "model_id": "luma-ray-3-2-generate",
+      "multimodal": {
+        "input": [{ "required": true, "type": "text" }, { "required": false, "type": "image" }, { "required": false, "type": "first_frame_image" }, { "required": false, "type": "last_frame_image" }],
+        "model_type": "video",
+        "output": [{ "required": true, "type": "video" }],
+        "pricing": { "price": 60000, "pricing_type": "video length based pricing", "unit": "second" }
+      },
+      "parameters": [
+        { "default": "", "description": "Text description of the video, 1-6000 characters.", "max": 6000, "name": "prompt", "required": true, "type": "string" },
+        { "default": "16:9", "description": "Output aspect ratio: 9:16, 3:4, 1:1, 4:3, 16:9, or 21:9.", "enum": ["9:16", "3:4", "1:1", "4:3", "16:9", "21:9"], "name": "aspect_ratio", "required": false, "type": "enum" },
+        { "default": "720p", "description": "Output resolution: 540p, 720p, or 1080p. 540p not available with HDR.", "enum": ["540p", "720p", "1080p"], "name": "resolution", "required": false, "type": "enum" },
+        { "default": "5s", "description": "Video length: 5s or 10s. 10s not supported with hdr, start_frame, or end_frame.", "enum": ["5s", "10s"], "name": "duration", "required": false, "type": "enum" },
+        { "default": false, "description": "HDR-encoded MP4. Requires HDR access and 720p/1080p; not supported with 10s, loop, or extend.", "name": "hdr", "required": false, "type": "boolean" },
+        { "default": false, "description": "Export an EXR alongside the MP4. Requires hdr=true; not supported on extend.", "name": "exr_export", "required": false, "type": "boolean" },
+        { "default": false, "description": "Seamless loop. Not supported with 10s, hdr, or end_frame; forward-extend only.", "name": "loop", "required": false, "type": "boolean" },
+        { "description": "Start anchor frame for image-to-video. Not supported with 10s.", "max": 1, "name": "start_frame_url", "required": false, "type": "first_frame_image" },
+        { "description": "End anchor frame for image-to-video or interpolation. Not supported with 10s.", "max": 1, "name": "end_frame_url", "required": false, "type": "last_frame_image" },
+        { "default": "", "description": "Chain-reference a prior generation as the start. Alone = forward extend; with end_frame = interpolation. Must be a completed video under the same API key.", "name": "start_frame_generation_id", "required": false, "type": "string" },
+        { "default": "", "description": "Chain-reference a prior generation as the end. Alone = backward extend; with start_frame = interpolation. Must be a completed video under the same API key.", "name": "end_frame_generation_id", "required": false, "type": "string" }
+      ],
+      "provider": "Luma"
+    },
+    "minimax-tts-speech-2.8-hd": {
+      "available": true,
+      "description": "Latest HD model with real-time response, intelligent parsing.",
+      "display_name": "minimax-tts-speech-2.8-hd",
+      "kind": "multimodal",
+      "model_id": "minimax-tts-speech-2.8-hd",
+      "multimodal": {
+        "input": [{ "required": true, "type": "text" }],
+        "model_type": "audio",
+        "output": [{ "required": true, "type": "audio" }],
+        "pricing": { "price": 100000, "pricing_type": "per one thousand character", "unit": "1k character" }
+      },
+      "parameters": [
+        { "default": "", "description": "Text content to be converted to speech.", "name": "text", "required": true, "type": "string" },
+        { "default": "English_expressive_narrator", "description": "Voice ID for speech synthesis.", "enum": ["English_expressive_narrator", "English_radiant_girl", "English_magnetic_voiced_man", "English_compelling_lady1", "English_Aussie_Bloke", "English_captivating_female1", "English_Upbeat_Woman", "English_Trustworth_Man", "English_CalmWoman", "English_Gentle-voiced_man", "English_Whispering_girl", "English_Graceful_Lady", "English_CaptivatingStoryteller", "English_Wiselady", "Chinese (Mandarin)_News_Anchor", "Chinese (Mandarin)_Warm_Bestie", "Japanese_CalmLady", "Korean_CalmGentleman", "Spanish_Narrator", "Portuguese_Narrator", "French_MaleNarrator", "German_FriendlyMan", "Italian_Narrator", "hindi_female_1_v2"], "name": "voice_id", "required": false, "type": "enum" },
+        { "default": 1, "description": "Speech speed multiplier.", "max": 2, "min": 0.5, "name": "speed", "required": false, "type": "float" },
+        { "default": 1, "description": "Volume level multiplier.", "max": 10, "min": 0, "name": "vol", "required": false, "type": "float" },
+        { "default": 0, "description": "Pitch adjustment in semitones.", "max": 12, "min": -12, "name": "pitch", "required": false, "type": "integer" },
+        { "default": "auto", "description": "Emotion control for synthesized speech. By default, the model automatically selects the most natural emotion based on text. Manual specification is only recommended when explicitly needed.", "enum": ["auto", "calm", "happy", "sad", "angry", "fearful", "disgusted", "surprised"], "name": "emotion", "required": false, "type": "enum" },
+        { "default": "auto", "description": "Controls whether recognition for specific minority languages and dialects is enhanced. If the language type is unknown, set to 'auto' and the model will automatically detect it.", "name": "language_boost", "required": false, "type": "string" },
+        { "default": "mp3", "description": "Specifies the format of the generated audio. Default is mp3.", "enum": ["mp3", "flac"], "name": "format", "required": false, "type": "enum" },
+        { "default": "32000", "description": "Specifies the sampling rate of the generated audio. Default is 32000 Hz.", "enum": ["8000", "16000", "22050", "24000", "32000", "44100"], "name": "audio_sample_rate", "required": false, "type": "enum" },
+        { "default": "128000", "description": "Specifies the bitrate of the generated audio. Default is 128000. Note: This parameter only applies to audio in mp3 format.", "enum": ["32000", "64000", "128000", "256000"], "name": "bitrate", "required": false, "type": "enum" },
+        { "default": "2", "description": "Specifies the number of audio channels. 1 = mono, 2 = stereo. Default is 2 (stereo).", "enum": ["1", "2"], "name": "channel", "required": false, "type": "enum" },
+        { "default": 0, "description": "Voice modification pitch adjustment. Adjusts the pitch of the synthesized voice for voice-changing effects. Range: -100 (lower) to 100 (higher).", "max": 100, "min": -100, "name": "vm_pitch", "required": false, "type": "integer" },
+        { "default": 0, "description": "Voice intensity adjustment. Controls the strength/power of the voice. Range: -100 (weaker) to 100 (stronger).", "max": 100, "min": -100, "name": "intensity", "required": false, "type": "integer" },
+        { "default": 0, "description": "Voice timbre adjustment. Modifies the tonal quality and character of the voice. Range: -100 to 100.", "max": 100, "min": -100, "name": "timbre", "required": false, "type": "integer" },
+        { "default": "", "description": "Applies special sound effects to the synthesized voice. These effects can create atmospheric or stylistic variations.", "enum": ["", "spacious_echo", "auditorium_echo", "lofi_telephone", "robotic"], "name": "sound_effects", "required": false, "type": "enum" }
+      ],
+      "provider": "minimax-audio"
+    },
+    "minimax-music-3.0": {
+      "available": true,
+      "description": "Generate AI music from lyrics and style prompts using Minimax Music 3.0 model.",
+      "display_name": "minimax-music-3.0",
+      "kind": "multimodal",
+      "model_id": "minimax-music-3.0",
+      "multimodal": {
+        "input": [{ "required": true, "type": "text" }],
+        "model_type": "audio",
+        "output": [{ "required": true, "type": "audio" }],
+        "pricing": { "price": 150000, "pricing_type": "per request", "unit": "song (up to 5 minutes)" }
+      },
+      "parameters": [
+        { "default": "", "description": "Song lyrics (1-3500 characters). Use '\n' to separate lines. You can add structure tags like [Verse], [Chorus], [Bridge], [Intro], [Outro] to enhance arrangement.", "name": "lyrics", "required": true, "type": "string" },
+        { "default": "", "description": "A description of the music style, mood, and scenario (0-2000 characters). For example: 'Pop, melancholic, perfect for a rainy night' or 'Upbeat electronic, energetic, dance club'.", "name": "prompt", "required": false, "type": "string" },
+        { "default": 44100, "description": "Audio sample rate in Hz.", "enum": ["16000", "24000", "32000", "44100"], "name": "sample_rate", "required": false, "type": "enum" },
+        { "default": 256000, "description": "Audio bitrate in bps. Higher bitrate means better quality.", "enum": ["32000", "64000", "128000", "256000"], "name": "bitrate", "required": false, "type": "enum" },
+        { "default": "mp3", "description": "Output audio format.", "enum": ["mp3", "wav", "pcm"], "name": "format", "required": false, "type": "enum" },
+        { "default": false, "description": "Auto-generate/enhance lyrics from the style prompt.", "name": "lyrics_optimizer", "required": false, "type": "boolean" }
+      ],
+      "provider": "minimax-audio"
+    },
+    "80ce8515-e387-4050-883c-7a34e127fba8": {
+      "available": true,
+      "description": "My World Cup Goal Highlight Moment",
+      "display_name": "80ce8515-e387-4050-883c-7a34e127fba8",
+      "kind": "multimodal",
+      "model_id": "80ce8515-e387-4050-883c-7a34e127fba8",
+      "multimodal": {
+        "input": [{ "required": true, "type": "image" }],
+        "model_type": "workflow",
+        "output": [{ "required": true, "type": "video" }],
+        "pricing": { "price": 1000000, "pricing_type": "", "unit": "request" }
+      },
+      "parameters": null,
+      "provider": ""
+    }
+  }
+}

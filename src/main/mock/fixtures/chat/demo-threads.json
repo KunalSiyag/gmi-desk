@@ -1,0 +1,214 @@
+{
+  "threads": [
+    {
+      "id": "5eed0000-0000-4000-8000-000000000001",
+      "title": "Compare GLM-5.3 and DeepSeek V4 Pro for coding",
+      "at": {
+        "minutesAgo": 22
+      },
+      "settings": {
+        "mode": "model",
+        "model": "deepseek-ai/DeepSeek-V4-Pro",
+        "routerMode": "balanced",
+        "reasoningEffort": null
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": "Compare GLM-5.3 and DeepSeek V4 Pro for coding",
+          "minutesBefore": 9
+        },
+        {
+          "role": "assistant",
+          "model": "deepseek-ai/DeepSeek-V4-Pro",
+          "reasoning": "The user wants a practical comparison for coding work, not a spec sheet.\n\nAxes that matter: context window, list price, how each model reasons, and where each tends to do well.\nFrom the catalog: GLM-5.3 is $1.40 in / $4.40 out per 1M tokens, DeepSeek V4 Pro is $1.74 / $3.48. Both list about 1M tokens of context.\n\nPlan: a compact table first, then when to reach for each, then a tiny script so they can A/B both on their own task. Keep claims modest; the honest answer is \"measure on your workload\".",
+          "content": "Both are strong open-weight coding models on GMI. The practical differences are price shape, how much they reason, and the kind of task they handle best.\n\n| | GLM-5.3 | DeepSeek V4 Pro |\n|---|---|---|\n| Context | ~1M tokens | ~1M tokens |\n| List price (in / out per 1M) | $1.40 / $4.40 | $1.74 / $3.48 |\n| Reasoning | Short by default | Long, always on |\n| Sweet spot | Multi-file edits, tool use | Tricky logic, reviews |\n\n### Reach for GLM-5.3 when\n- **You run agent loops**: short reasoning keeps time to first token low on every step.\n- **The change spans many files**: the large context fits most of the relevant code at once.\n- **Output dominates the bill**: refactors and generated tests are output-heavy.\n\n### Reach for DeepSeek V4 Pro when\n- **The bug is subtle**: concurrency, off-by-one and numeric edge cases benefit from longer reasoning.\n- **You want to see the why**: the reasoning trace makes reviews easier to trust.\n\n### Settle it on your own code\nRun the same task through both and compare cost per accepted change:\n\n```python\nfrom openai import OpenAI\n\nclient = OpenAI(base_url=\"https://api.gmi-serving.com/v1\", api_key=GMI_API_KEY)\n\nfor model in [\"zai-org/GLM-5.3\", \"deepseek-ai/DeepSeek-V4-Pro\"]:\n    reply = client.chat.completions.create(\n        model=model,\n        messages=[{\"role\": \"user\", \"content\": TASK}],\n        max_tokens=4096,\n    )\n    print(model, reply.usage.total_tokens)\n```\n\n**Rule of thumb:** start with GLM-5.3 for day-to-day coding and switch to V4 Pro when a bug survives two attempts.",
+          "usage": {
+            "promptTokens": 41,
+            "completionTokens": 1092,
+            "reasoningTokens": 286,
+            "cachedTokens": null
+          },
+          "minutesBefore": 9,
+          "durationSec": 17
+        },
+        {
+          "role": "user",
+          "content": "Which one is cheaper for a 30k-token refactor prompt with a 4k-token answer?",
+          "minutesBefore": 1
+        },
+        {
+          "role": "assistant",
+          "model": "deepseek-ai/DeepSeek-V4-Pro",
+          "reasoning": "Prompt 30,000 tokens, completion 4,000 tokens, list prices per 1M.\nGLM-5.3: 0.030 × 1.40 = $0.042 input, 0.004 × 4.40 = $0.0176 output → $0.0596.\nV4 Pro: 0.030 × 1.74 = $0.0522 input, 0.004 × 3.48 = $0.01392 output → $0.06612.\nGLM-5.3 is about 10% cheaper at list price. Mention that the org discount applies on top and that cached input lowers both.",
+          "content": "At list prices, **GLM-5.3 is about 10% cheaper** for that shape of request:\n\n| | Input (30k) | Output (4k) | Total |\n|---|---:|---:|---:|\n| GLM-5.3 | $0.0420 | $0.0176 | **$0.0596** |\n| DeepSeek V4 Pro | $0.0522 | $0.0139 | **$0.0661** |\n\nTwo things move these numbers in practice:\n\n1. **Your org discount** is applied on top of list price (the footer under each reply shows the discounted estimate).\n2. **Cached input**: if you resend the same 30k-token prefix, both models bill the cached part at a fraction of the input rate.\n\nPast roughly 11k output tokens the picture flips: V4 Pro's cheaper output rate wins.",
+          "usage": {
+            "promptTokens": 1162,
+            "completionTokens": 512,
+            "reasoningTokens": 174,
+            "cachedTokens": 1024
+          },
+          "minutesBefore": 1,
+          "durationSec": 9
+        }
+      ]
+    },
+    {
+      "id": "5eed0000-0000-4000-8000-000000000002",
+      "title": "Explain KV cache in 5 bullets",
+      "at": {
+        "minutesAgo": 175
+      },
+      "settings": {
+        "mode": "auto",
+        "model": null,
+        "routerMode": "balanced",
+        "reasoningEffort": null
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": "Explain KV cache in 5 bullets",
+          "minutesBefore": 6
+        },
+        {
+          "role": "assistant",
+          "model": "deepseek-ai/DeepSeek-V4-Flash",
+          "routing": {
+            "selectedModel": "deepseek-ai/DeepSeek-V4-Flash",
+            "taskType": "explanation",
+            "mode": "balanced",
+            "fallbackModels": [
+              "zai-org/GLM-5.3-Flash"
+            ],
+            "recommendationId": "3f1c9a52-7d0e-4b8a-9c61-2e5f0d7a4b13"
+          },
+          "content": "- **What it is:** while generating, every transformer layer computes a key and a value vector for each token. The KV cache keeps them, so earlier tokens are not recomputed at every step.\n- **Why it matters:** without it, producing token *n* would redo the projections for all *n − 1* previous tokens, so decoding would slow down as the reply grows.\n- **What it costs:** memory ≈ 2 × layers × KV heads × head size × tokens × bytes per value. At long contexts the cache, not the weights, becomes the main memory consumer.\n- **How servers cope:** paged attention, prefix caching, grouped-query attention and FP8 caches all exist to fit more (and longer) requests on each GPU.\n- **Why you see it on your bill:** providers charge *cached* input tokens at a discount, because a reused prompt prefix skips that work.",
+          "usage": {
+            "promptTokens": 24,
+            "completionTokens": 268,
+            "reasoningTokens": null,
+            "cachedTokens": null
+          },
+          "minutesBefore": 6,
+          "durationSec": 4
+        },
+        {
+          "role": "user",
+          "content": "Show a minimal PyTorch sketch of it",
+          "minutesBefore": 1
+        },
+        {
+          "role": "assistant",
+          "model": "zai-org/GLM-5.3",
+          "routing": {
+            "selectedModel": "zai-org/GLM-5.3",
+            "taskType": "coding",
+            "mode": "balanced",
+            "fallbackModels": [
+              "deepseek-ai/DeepSeek-V4-Pro"
+            ],
+            "recommendationId": "8b2e4f17-0c3d-4e6a-a5b9-71d2c8e0f346"
+          },
+          "content": "Here is the core idea in one attention layer. Each call appends the new tokens' keys and values to the cache, then attends over everything cached so far.\n\n```python\nimport torch\nimport torch.nn.functional as F\n\n\nclass CachedSelfAttention(torch.nn.Module):\n    def __init__(self, dim: int, heads: int):\n        super().__init__()\n        self.heads = heads\n        self.qkv = torch.nn.Linear(dim, 3 * dim)\n        self.out = torch.nn.Linear(dim, dim)\n\n    def forward(self, x, cache=None):\n        b, t, d = x.shape\n        q, k, v = self.qkv(x).view(b, t, 3, self.heads, d // self.heads).unbind(2)\n        q, k, v = (z.transpose(1, 2) for z in (q, k, v))  # (batch, heads, tokens, head_dim)\n        if cache is not None:\n            k = torch.cat([cache[0], k], dim=2)\n            v = torch.cat([cache[1], v], dim=2)\n        y = F.scaled_dot_product_attention(q, k, v, is_causal=cache is None)\n        return self.out(y.transpose(1, 2).reshape(b, t, d)), (k, v)\n```\n\n**How to use it**\n1. Run the whole prompt once with `cache=None` and keep the returned `(k, v)`.\n2. Then feed one token at a time, passing the cache back in.\n3. Each step now costs one token's worth of projections instead of the whole sequence.",
+          "usage": {
+            "promptTokens": 318,
+            "completionTokens": 436,
+            "reasoningTokens": null,
+            "cachedTokens": 256
+          },
+          "minutesBefore": 1,
+          "durationSec": 7
+        }
+      ]
+    },
+    {
+      "id": "5eed0000-0000-4000-8000-000000000003",
+      "title": "Draft a launch tweet for our GPU cluster",
+      "at": {
+        "daysAgo": 1,
+        "hour": 16,
+        "minute": 40
+      },
+      "settings": {
+        "mode": "model",
+        "model": "moonshotai/Kimi-K2.6",
+        "routerMode": "balanced",
+        "reasoningEffort": null
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": "Draft a launch tweet for our GPU cluster",
+          "minutesBefore": 4
+        },
+        {
+          "role": "assistant",
+          "model": "moonshotai/Kimi-K2.6",
+          "content": "Three options, from plain to punchy:\n\n1. **Straight announcement**\n   > Our new GPU cluster is live: H200 nodes on demand, InfiniBand between them, and per-second billing. Start a training run in minutes, not weeks.\n\n2. **Numbers first**\n   > 8× H200 per node. 3.2 Tb/s InfiniBand. No waitlist. We fine-tuned a 70B model overnight on the new cluster. Your turn.\n\n3. **Builder-friendly**\n   > You bring the model, we bring the GPUs. The new cluster is open today: reserve a node in two clicks.\n\nWant a version for a specific audience (researchers, startups, enterprise) or a short thread that expands on option 2?",
+          "usage": {
+            "promptTokens": 30,
+            "completionTokens": 214,
+            "reasoningTokens": null,
+            "cachedTokens": null
+          },
+          "minutesBefore": 4,
+          "durationSec": 5
+        },
+        {
+          "role": "user",
+          "content": "Make option 2 shorter and add a call to action",
+          "minutesBefore": 1
+        },
+        {
+          "role": "assistant",
+          "model": "moonshotai/Kimi-K2.6",
+          "content": "> 8× H200 per node, 3.2 Tb/s InfiniBand, zero waitlist. Train your next model this week. Reserve a node →\n\nAbout 100 characters, so there is room for a link and an image. For an even tighter version, drop \"per node\".",
+          "usage": {
+            "promptTokens": 262,
+            "completionTokens": 61,
+            "reasoningTokens": null,
+            "cachedTokens": null
+          },
+          "minutesBefore": 1,
+          "durationSec": 2
+        }
+      ]
+    },
+    {
+      "id": "5eed0000-0000-4000-8000-000000000004",
+      "title": "SQL for top models by spend this month",
+      "at": {
+        "daysAgo": 4,
+        "hour": 11,
+        "minute": 5
+      },
+      "settings": {
+        "mode": "model",
+        "model": "zai-org/GLM-5.3",
+        "routerMode": "balanced",
+        "reasoningEffort": null
+      },
+      "messages": [
+        {
+          "role": "user",
+          "content": "Write SQL for the top 5 models by spend in the last 30 days",
+          "minutesBefore": 2
+        },
+        {
+          "role": "assistant",
+          "model": "zai-org/GLM-5.3",
+          "content": "Assuming a `usage_events` table with one row per request:\n\n```sql\nSELECT\n  model_id,\n  COUNT(*)                          AS requests,\n  SUM(input_tokens + output_tokens) AS tokens,\n  ROUND(SUM(cost_usd), 2)           AS spend_usd\nFROM usage_events\nWHERE created_at >= NOW() - INTERVAL '30 days'\nGROUP BY model_id\nORDER BY spend_usd DESC\nLIMIT 5;\n```\n\nExample result:\n\n| model_id | requests | tokens | spend_usd |\n|---|---:|---:|---:|\n| zai-org/GLM-5.3 | 1,284 | 9.8M | 21.40 |\n| deepseek-ai/DeepSeek-V4-Pro | 412 | 3.1M | 9.75 |\n| moonshotai/Kimi-K2.6 | 233 | 1.2M | 3.92 |\n\nIf the table is large, add an index on `(created_at, model_id)` so the date filter does not scan everything.",
+          "usage": {
+            "promptTokens": 43,
+            "completionTokens": 331,
+            "reasoningTokens": null,
+            "cachedTokens": null
+          },
+          "minutesBefore": 2,
+          "durationSec": 6
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="__GMI_CSP__" />
+    <title>GMI Desk</title>
+    <!-- gmi:boot-style (vite.config.ts inlines styles/dino.css here) -->
+  </head>
+  <body>
+    <div id="gmi-boot" class="gmi-boot" role="status" aria-label="Starting GMI Desk">
+      <div class="gmi-boot-stage">
+        <span class="dino gmi-boot-dino" data-mood="loading"><!-- gmi:boot-dino --></span>
+        <div class="gmi-boot-word"><!-- gmi:boot-logo --><span>Desk</span></div>
+        <div class="gmi-boot-caption"><i></i>Starting up</div>
+      </div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>

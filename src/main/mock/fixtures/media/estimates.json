@@ -1,0 +1,37 @@
+{
+  "source": "GMI MCP estimate_generation, recorded 2026-10-31 (free; nothing charged). Prices are LIST prices before the org discount.",
+  "calls": [
+    {
+      "args": { "model_id": "hy-image-v3.5-preview", "prompt": "A lighthouse on a cliff at dusk, cinematic lighting", "parameters": { "size": "1024x1024" } },
+      "result": { "currency": "micro_usd", "model_id": "hy-image-v3.5-preview", "price_micro_usd": 24000, "price_usd": "0.024", "unit": "image" }
+    },
+    {
+      "args": { "model_id": "kling-3.0-turbo-t2v", "prompt": "A red fox running through fresh snow, slow motion", "parameters": { "resolution": "720p", "duration": "5", "aspect_ratio": "16:9" } },
+      "result": { "currency": "micro_usd", "model_id": "kling-3.0-turbo-t2v", "note": "This model is priced per second, and this price covers the duration these parameters ask for.", "price_micro_usd": 560000, "price_usd": "0.56", "unit": "second" }
+    },
+    {
+      "args": { "model_id": "minimax-tts-speech-2.8-hd", "prompt": "Hi", "parameters": { "text": "This sentence is a fair bit longer than the prompt, so we can tell which field is counted for pricing purposes here." } },
+      "result": { "currency": "micro_usd", "model_id": "minimax-tts-speech-2.8-hd", "price_micro_usd": 11600, "price_usd": "0.0116", "unit": "1k character" }
+    },
+    {
+      "args": { "model_id": "80ce8515-e387-4050-883c-7a34e127fba8", "prompt": "goal celebration" },
+      "result": { "currency": "micro_usd", "model_id": "80ce8515-e387-4050-883c-7a34e127fba8", "price_micro_usd": 1000000, "price_usd": "1.00", "unit": "request" }
+    },
+    {
+      "args": { "model_id": "seedream-5.0-pro", "prompt": "A watercolor map of an imaginary island", "parameters": { "size": "2K", "max_images": 3 }, "n": 2 },
+      "result": { "currency": "micro_usd", "model_id": "seedream-5.0-pro", "price_micro_usd": 85000, "price_usd": "0.085", "unit": "image" }
+    },
+    {
+      "args": { "model_id": "wan3.0-video", "prompt": "A drone shot over a misty forest at sunrise", "parameters": { "resolution": "720P", "duration": 8 } },
+      "result": { "currency": "micro_usd", "model_id": "wan3.0-video", "note": "This model is priced per second, and this price covers the duration these parameters ask for.", "price_micro_usd": 800000, "price_usd": "0.80", "unit": "second" }
+    },
+    {
+      "args": { "model_id": "minimax-music-3.0", "prompt": "Indie folk, melancholic", "parameters": { "lyrics": "[Verse]\nStreetlights flicker on the wet road" } },
+      "result": { "currency": "micro_usd", "model_id": "minimax-music-3.0", "price_micro_usd": 150000, "price_usd": "0.15", "unit": "song (up to 5 minutes)" }
+    }
+  ],
+  "errors": [
+    { "args": { "model_id": "minimax-music-3.0", "prompt": "" }, "message": "prompt is required" },
+    { "args": { "model_id": "minimax-tts-speech-2.8-hd", "prompt": "text only in the prompt" }, "message": "This generation was refused as submitted. Check the model's parameters and try again with corrected arguments. (request_rejected · ref 522987e0)" }
+  ]
+}

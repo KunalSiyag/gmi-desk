@@ -1,0 +1,30 @@
+{
+  "inference": {
+    "key": {
+      "id": "00000000-0000-0000-0000-0000000000a1",
+      "scope": "ie_model"
+    },
+    "organization": {
+      "id": "00000000-0000-0000-0000-000000000000"
+    }
+  },
+  "compute": {
+    "key": {
+      "id": "00000000-0000-0000-0000-0000000000c1",
+      "scope": "ce_resource"
+    },
+    "organization": {
+      "id": "00000000-0000-0000-0000-000000000000"
+    }
+  },
+  "invalid": {
+    "group": "api-key",
+    "code": 200,
+    "message": "Invalid API key."
+  },
+  "expired": {
+    "group": "api-key",
+    "code": 201,
+    "message": "Expired API key."
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "models": {
+    "zai-org/GLM-5.3": {
+      "inputPerMTok": 1.4,
+      "outputPerMTok": 4.4,
+      "cacheReadPerMTok": 0.26,
+      "discount": 0.2,
+      "reasoning": false
+    },
+    "zai-org/GLM-5.3-Flash": {
+      "inputPerMTok": 0.15,
+      "outputPerMTok": 0.5,
+      "cacheReadPerMTok": 0.03,
+      "discount": 0,
+      "reasoning": false
+    },
+    "deepseek-ai/DeepSeek-V4-Pro": {
+      "inputPerMTok": 1.74,
+      "outputPerMTok": 3.48,
+      "cacheReadPerMTok": 0.145,
+      "discount": 0.2,
+      "reasoning": true
+    },
+    "deepseek-ai/DeepSeek-V4-Flash": {
+      "inputPerMTok": 0.14,
+      "outputPerMTok": 0.28,
+      "cacheReadPerMTok": 0.028,
+      "discount": 0.1,
+      "reasoning": false
+    },
+    "deepseek-ai/DeepSeek-R1-0528": {
+      "inputPerMTok": 0.57,
+      "outputPerMTok": 2.29,
+      "cacheReadPerMTok": 0.23,
+      "discount": 0,
+      "reasoning": true
+    },
+    "moonshotai/Kimi-K2.6": {
+      "inputPerMTok": 0.95,
+      "outputPerMTok": 4,
+      "cacheReadPerMTok": 0.16,
+      "discount": 0.1,
+      "reasoning": false
+    },
+    "moonshotai/Kimi-K2-Thinking": {
+      "inputPerMTok": 0.8,
+      "outputPerMTok": 1.2,
+      "cacheReadPerMTok": null,
+      "discount": 0,
+      "reasoning": true
+    },
+    "XiaomiMiMo/MiMo-V2.5": {
+      "inputPerMTok": 0.14,
+      "outputPerMTok": 0.28,
+      "cacheReadPerMTok": 0.003,
+      "discount": 0,
+      "reasoning": false
+    },
+    "Qwen/Qwen3.8-Max": {
+      "inputPerMTok": 2,
+      "outputPerMTok": 6,
+      "cacheReadPerMTok": 0.25,
+      "discount": 0,
+      "reasoning": true
+    },
+    "Qwen/Qwen3-Next-80B-A3B-Thinking": {
+      "inputPerMTok": 0.15,
+      "outputPerMTok": 1.5,
+      "cacheReadPerMTok": null,
+      "discount": 0,
+      "reasoning": true
+    },
+    "openai/gpt-5.4": {
+      "inputPerMTok": 2.5,
+      "outputPerMTok": 15,
+      "cacheReadPerMTok": 0.25,
+      "discount": 0,
+      "reasoning": true
+    },
+    "openai/gpt-5.4-mini": {
+      "inputPerMTok": 0.75,
+      "outputPerMTok": 4.5,
+      "cacheReadPerMTok": 0.075,
+      "discount": 0,
+      "reasoning": true
+    }
+  }
+}

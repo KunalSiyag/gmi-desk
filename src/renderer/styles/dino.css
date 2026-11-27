@@ -1,0 +1,349 @@
+/*
+ * Dino (components/brand/Dino.tsx) and the boot splash (index.html).
+ *
+ * vite.config.ts inlines this file into index.html as a <style> block, so it applies before any script or the
+ * main stylesheet loads (the splash is the first thing painted). It is plain CSS on purpose: no Tailwind, no
+ * tokens that only exist after the app applies its theme. The splash follows prefers-color-scheme, which
+ * Electron sets from the user's theme setting (nativeTheme.themeSource) before the window loads.
+ *
+ * Moods (data-mood on .dino): idle (blinks now and then), loading (bobs and nods, the chip's GMI mark glows, the
+ * status lights blink in turn), happy (one hop and a wave), sleep (head drooped, eyes closed, lights dim, a
+ * drifting "z"). data-still turns all motion off (marks that sit in view all day). Only transform and opacity
+ * animate. Pivots are in the art's 128-unit view box (transform-box: view-box), so each part and its piece of the
+ * sticker outline (same class) turn around the same point.
+ */
+
+.dino {
+  display: inline-block;
+  flex-shrink: 0;
+  line-height: 0;
+  position: relative;
+}
+.dino > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.dino .dino-body,
+.dino .dino-head,
+.dino .dino-eye,
+.dino .dino-eye-happy,
+.dino .dino-eye-closed,
+.dino .dino-arm-l,
+.dino .dino-arm-r,
+.dino .dino-shadow {
+  transform-box: view-box;
+}
+.dino .dino-body { transform-origin: 64px 122px; }
+.dino .dino-head { transform-origin: 64px 64px; }
+.dino .dino-eye,
+.dino .dino-eye-happy,
+.dino .dino-eye-closed { transform-origin: 64px 30px; }
+.dino .dino-arm-l { transform-origin: 40px 64px; }
+.dino .dino-arm-r { transform-origin: 88px 64px; }
+.dino .dino-shadow { transform-origin: 64px 124.5px; }
+
+/* On dark surfaces the chip's GMI mark glows lime and the floor shadow becomes a faint lime light. */
+.dark .dino .dino-chip-core {
+  filter: drop-shadow(0 0 1.2px rgb(221 234 77 / 0.9));
+}
+.dark .dino .dino-shadow {
+  fill: #ddea4d;
+  opacity: 0.1;
+}
+
+/* idle: an occasional blink of the eye sockets. */
+.dino:not([data-still]) .dino-eye {
+  animation: dino-blink 5.2s infinite;
+}
+.dino[data-mood='happy'] .dino-eye,
+.dino[data-mood='sleep'] .dino-eye {
+  display: none;
+}
+.dino[data-mood='happy'] .dino-eye-happy,
+.dino[data-mood='sleep'] .dino-eye-closed {
+  display: inline;
+}
+
+/* loading: a gentle bob with a nod; the chip's mark glows and the status lights blink in turn. */
+.dino[data-mood='loading'] .dino-body {
+  animation: dino-bob 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.dino[data-mood='loading'] .dino-head {
+  animation: dino-nod 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.dino[data-mood='loading'] .dino-shadow {
+  animation: dino-shadow 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.dino[data-mood='loading'] .dino-chip-core {
+  animation: dino-heart 1.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.dino[data-mood='loading'] .dino-led {
+  animation: dino-led 1.2s steps(1, end) infinite;
+}
+.dino[data-mood='loading'] .dino-led:nth-of-type(2) { animation-delay: 240ms; }
+.dino[data-mood='loading'] .dino-led:nth-of-type(3) { animation-delay: 480ms; }
+.dino[data-mood='loading'] .dino-led:nth-of-type(4) { animation-delay: 720ms; }
+.dino[data-mood='loading'] .dino-led:nth-of-type(5) { animation-delay: 960ms; }
+
+/* happy: one hop and a wave. */
+.dino[data-mood='happy'] .dino-body {
+  animation: dino-hop 560ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+.dino[data-mood='happy'] .dino-arm-r {
+  animation: dino-wave 1.1s cubic-bezier(0.23, 1, 0.32, 1) 120ms both;
+}
+
+/* sleep: head drooped, slow breathing, lights dim, a drifting "z". */
+.dino[data-mood='sleep'] .dino-head {
+  transform: rotate(-5deg) translateY(1.5px);
+}
+.dino[data-mood='sleep'] .dino-body {
+  animation: dino-breathe 3.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+.dino[data-mood='sleep'] .dino-led,
+.dino[data-mood='sleep'] .dino-chip-core {
+  opacity: 0.35;
+}
+.dino[data-mood='sleep']::after {
+  content: 'z';
+  position: absolute;
+  right: 8%;
+  top: 0;
+  font: 600 13px/1 ui-monospace, monospace;
+  color: #ddea4d;
+  opacity: 0;
+  animation: dino-z 3.6s cubic-bezier(0.23, 1, 0.32, 1) infinite 0.6s;
+}
+:root:not(.dark) .dino[data-mood='sleep']::after {
+  color: #5c6a00;
+}
+
+.dino[data-still] *,
+.dino[data-still]::after {
+  animation: none !important;
+}
+
+@keyframes dino-blink {
+  0%, 94%, 97.5%, 100% { transform: scaleY(1); }
+  95.7% { transform: scaleY(0.12); }
+}
+@keyframes dino-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+@keyframes dino-nod {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-3deg); }
+}
+@keyframes dino-shadow {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(0.86); }
+}
+/* Chat's and the kit's "working" signal (components/brand/Plates.tsx) also uses this one. */
+@keyframes dino-plate-fade {
+  0%, 55%, 100% { opacity: 0.4; }
+  22% { opacity: 1; }
+}
+@keyframes dino-heart {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+@keyframes dino-led {
+  0% { opacity: 1; }
+  20%, 100% { opacity: 0.25; }
+}
+@keyframes dino-hop {
+  0% { transform: translateY(0); }
+  35% { transform: translateY(-9px); }
+  65% { transform: translateY(0); }
+  82% { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+@keyframes dino-wave {
+  0% { transform: rotate(0deg); }
+  30% { transform: rotate(-150deg); }
+  45% { transform: rotate(-130deg); }
+  60% { transform: rotate(-155deg); }
+  75% { transform: rotate(-135deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes dino-breathe {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.02); }
+}
+@keyframes dino-z {
+  0% { opacity: 0; transform: translate(0, 4px) scale(0.9); }
+  25% { opacity: 0.85; }
+  70%, 100% { opacity: 0; transform: translate(6px, -10px) scale(1.05); }
+}
+
+/* Loaders fade in after a beat, so loads that finish quickly never flash a Dino. */
+.dino-loader {
+  animation: dino-appear 260ms cubic-bezier(0.23, 1, 0.32, 1) 160ms both;
+}
+@keyframes dino-appear {
+  from { opacity: 0; transform: translateY(4px); }
+}
+/* The reduced-motion variant of dino-appear and gmi-boot-in: the fade without the movement. */
+@keyframes dino-fade-in {
+  from { opacity: 0; }
+}
+
+/* ── Boot splash (index.html; hidden by lib/boot-splash.ts once the app has its first state) ─────────── */
+
+.gmi-boot {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  display: grid;
+  place-items: center;
+  background: #000;
+  color: #fafafa;
+  font-family: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: opacity 220ms cubic-bezier(0.23, 1, 0.32, 1), visibility 0s linear 220ms;
+  cursor: default;
+  user-select: none;
+}
+/* GMI's grid floor, fading out from the centre, with a soft lime light behind Dino. */
+.gmi-boot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center center;
+  -webkit-mask-image: radial-gradient(ellipse 46% 42% at 50% 50%, #000 20%, transparent 100%);
+  mask-image: radial-gradient(ellipse 46% 42% at 50% 50%, #000 20%, transparent 100%);
+}
+.gmi-boot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 44%, rgb(221 234 77 / 0.1), transparent 32%);
+}
+.gmi-boot-stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: gmi-boot-in 420ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.gmi-boot-dino {
+  width: 116px;
+  height: 116px;
+}
+.gmi-boot-word {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 17px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+/* GMI Cloud's logo (official paths, components/brand/gmi-logo.ts), then the product word. */
+.gmi-boot-logo {
+  display: block;
+  height: 17px;
+  width: auto;
+}
+.gmi-boot-word span {
+  color: #ddea4d;
+}
+.gmi-boot-caption {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 500 10px/1 'Geist Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+.gmi-boot-caption i {
+  width: 6px;
+  height: 6px;
+  background: #ddea4d;
+  animation: gmi-boot-dot 1.2s steps(2, jump-none) infinite;
+}
+.gmi-boot[data-done] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.gmi-boot[data-done] .gmi-boot-stage {
+  transform: scale(0.98);
+}
+
+@media (prefers-color-scheme: light) {
+  .gmi-boot {
+    background: #fcfcfc;
+    color: #0a0a0a;
+  }
+  .gmi-boot::before {
+    background-image:
+      linear-gradient(to right, rgb(0 0 0 / 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(0 0 0 / 0.055) 1px, transparent 1px);
+  }
+  /* Lime has no luminance on white: the light glow is a faint olive, like Welcome's (DINO_GLOW). */
+  .gmi-boot::after {
+    background: radial-gradient(circle at 50% 44%, rgb(92 106 0 / 0.06), transparent 30%);
+  }
+  .gmi-boot-caption i {
+    background: #5c6a00;
+  }
+  .gmi-boot-word span {
+    color: #5c6a00;
+  }
+  .gmi-boot-caption {
+    color: #6b6b6b;
+  }
+  .gmi-boot .dino .dino-chip-core {
+    filter: none;
+  }
+  .gmi-boot .dino .dino-shadow {
+    fill: #000;
+    opacity: 0.12;
+  }
+}
+
+@keyframes gmi-boot-in {
+  from { opacity: 0; transform: translateY(6px) scale(0.97); }
+}
+@keyframes gmi-boot-dot {
+  0% { opacity: 1; }
+  100% { opacity: 0.25; }
+}
+
+/* Reduced motion: Dino stays put (no bob, nod, hop, wave, blink or breathing); the chip and lights still pulse
+   (status). Loaders and the splash keep their fade-in without the rise: the loader's delayed fade is what stops a
+   quick load from flashing a Dino. */
+@media (prefers-reduced-motion: reduce) {
+  .dino .dino-body,
+  .dino .dino-head,
+  .dino .dino-arm-r,
+  .dino .dino-shadow,
+  .dino .dino-eye,
+  .dino::after {
+    animation: none !important;
+  }
+  .dino[data-mood='loading'] .dino-led {
+    animation-duration: 2s;
+  }
+  .dino-loader,
+  .gmi-boot-stage {
+    animation-name: dino-fade-in;
+  }
+  .gmi-boot-stage,
+  .gmi-boot[data-done] .gmi-boot-stage {
+    transform: none;
+  }
+}

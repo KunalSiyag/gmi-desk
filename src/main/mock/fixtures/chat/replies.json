@@ -1,0 +1,168 @@
+{
+  "replies": [
+    {
+      "id": "code",
+      "match": [
+        "code",
+        "function",
+        "python",
+        "script",
+        "typescript",
+        "javascript",
+        "sql",
+        "bug",
+        "implement",
+        "regex",
+        "api",
+        "stream"
+      ],
+      "reasoning": "They want working code, so lead with the snippet and keep the prose short.\nUse only the standard library so it runs anywhere. GMI's chat endpoint is OpenAI-compatible: POST /v1/chat/completions with stream: true returns Server-Sent Events.\nRemember the final usage chunk has an empty choices array; skip it. Mention max_tokens because the documented default is low.",
+      "content": "Here is a small, dependency-free helper that streams a chat reply from GMI and prints tokens as they arrive.\n\n```python\nimport json\nimport os\nimport urllib.request\n\n\ndef stream_chat(prompt: str, model: str = \"zai-org/GLM-5.3\") -> str:\n    body = json.dumps({\n        \"model\": model,\n        \"messages\": [{\"role\": \"user\", \"content\": prompt}],\n        \"stream\": True,\n        \"max_tokens\": 4096,\n    }).encode()\n    req = urllib.request.Request(\n        \"https://api.gmi-serving.com/v1/chat/completions\",\n        data=body,\n        headers={\n            \"Authorization\": f\"Bearer {os.environ['GMI_API_KEY']}\",\n            \"Content-Type\": \"application/json\",\n        },\n    )\n    parts = []\n    with urllib.request.urlopen(req) as res:\n        for raw in res:\n            line = raw.decode().strip()\n            if not line.startswith(\"data: \") or line == \"data: [DONE]\":\n                continue\n            chunk = json.loads(line[6:])\n            if not chunk.get(\"choices\"):\n                continue  # the final usage chunk has no choices\n            delta = chunk[\"choices\"][0][\"delta\"].get(\"content\") or \"\"\n            print(delta, end=\"\", flush=True)\n            parts.append(delta)\n    return \"\".join(parts)\n```\n\n**Notes**\n- `\"stream\": True` makes GMI answer with Server-Sent Events; each `data:` line carries one JSON chunk.\n- Set `max_tokens` explicitly: the documented default is only 2,000.\n- Swap the model id for any chat model in the catalog; the request shape stays the same."
+    },
+    {
+      "id": "compare",
+      "match": [
+        "compare",
+        " vs",
+        "versus",
+        "difference",
+        "better",
+        "which"
+      ],
+      "reasoning": "Give a structured answer: a one-line summary, the key points as a list, a concrete example, and a comparison table.\nKeep it skimmable; the user can ask for depth.",
+      "content": "Short version: pick by the shape of your workload, then confirm on a real task.\n\n| | Option A | Option B |\n|---|---|---|\n| Strength | Fast, cheap, good enough for most prompts | Deeper reasoning on hard problems |\n| Latency | Low | Higher (it thinks first) |\n| Cost per 1M output | Lower | Higher |\n| Best for | Chat, drafts, routine code | Reviews, debugging, analysis |\n\n### How to decide\n1. **Collect 10–20 real prompts** from your own usage.\n2. **Run both** and note which answers you would actually ship.\n3. **Divide cost by accepted answers**: the cheaper model per *useful* reply wins.\n\nIf you would rather not decide per message, switch the composer to **Auto** and GMI Router will choose for you."
+    },
+    {
+      "id": "writing",
+      "match": [
+        "tweet",
+        "draft",
+        "email",
+        "launch",
+        "announce",
+        "post",
+        "copy",
+        "slogan",
+        "headline"
+      ],
+      "reasoning": null,
+      "content": "Here are three takes with different tones:\n\n1. **Clear and direct**\n   > We just launched something we've wanted for a long time: faster answers at a lower price. Try it today.\n\n2. **Benefit first**\n   > Ship features, not infrastructure. Our new release handles the heavy lifting so your team can focus on the product.\n\n3. **Playful**\n   > Good news for your roadmap (and your budget): the new release is live. Go break things, safely.\n\nTell me the audience and the channel and I'll tighten one of these."
+    },
+    {
+      "id": "explain",
+      "match": [
+        "explain",
+        "what is",
+        "how does",
+        "why",
+        "cache"
+      ],
+      "reasoning": null,
+      "content": "### The short version\nIt is a way of trading memory for speed: the system remembers work it has already done so it never repeats it.\n\n### How it works\n- **Store**: intermediate results are kept the first time they are computed.\n- **Reuse**: later steps read them instead of recomputing.\n- **Evict**: when memory runs low, the least useful entries are dropped.\n\n### Why it matters\n| Without it | With it |\n|---|---|\n| Every step repeats earlier work | Each step only does new work |\n| Slower as input grows | Roughly constant cost per step |\n| Lower memory use | Higher memory use |\n\nWant a worked example or a deeper dive into one of these points?"
+    },
+    {
+      "id": "default",
+      "match": [],
+      "reasoning": "Give a structured answer: a one-line summary, the key points as a list, a concrete example, and a comparison table.\nKeep it skimmable; the user can ask for depth.",
+      "content": "## Here is a structured take\n\nA quick summary first, then the details you can skim.\n\n### Key points\n- **Start small.** Ship the simplest version that answers the question, then measure.\n- **Measure cost per useful answer**, not cost per token: a pricier model that is right the first time is often cheaper overall.\n- **Keep prompts stable** so repeated prefixes are billed as cached input.\n\n### Example\n\n```ts\nconst res = await fetch(\"https://api.gmi-serving.com/v1/chat/completions\", {\n  method: \"POST\",\n  headers: {\n    Authorization: `Bearer ${process.env.GMI_API_KEY}`,\n    \"Content-Type\": \"application/json\",\n  },\n  body: JSON.stringify({ model: \"zai-org/GLM-5.3\", messages, stream: true }),\n});\n```\n\n### Options at a glance\n\n| Option | Speed | Cost | Best for |\n|---|---|---|---|\n| Small fast model | Fast | $ | Drafts, classification |\n| Mid-size model | Medium | $$ | Everyday chat and code |\n| Frontier model | Slower | $$$ | Hard reasoning, reviews |\n\n> Tip: switch the composer to **Auto** and GMI Router makes this call for every message."
+    }
+  ],
+  "routes": [
+    {
+      "task": "coding",
+      "match": [
+        "code",
+        "function",
+        "python",
+        "script",
+        "typescript",
+        "javascript",
+        "sql",
+        "bug",
+        "implement",
+        "regex",
+        "refactor"
+      ],
+      "models": {
+        "cost": "deepseek-ai/DeepSeek-V4-Flash",
+        "balanced": "zai-org/GLM-5.3",
+        "quality": "zai-org/GLM-5.3"
+      },
+      "fallbacks": [
+        "deepseek-ai/DeepSeek-V4-Pro"
+      ]
+    },
+    {
+      "task": "creative_writing",
+      "match": [
+        "tweet",
+        "draft",
+        "email",
+        "launch",
+        "announce",
+        "post",
+        "copy",
+        "story",
+        "poem",
+        "slogan"
+      ],
+      "models": {
+        "cost": "XiaomiMiMo/MiMo-V2.5",
+        "balanced": "moonshotai/Kimi-K2.6",
+        "quality": "moonshotai/Kimi-K2.6"
+      },
+      "fallbacks": [
+        "deepseek-ai/DeepSeek-V4-Flash"
+      ]
+    },
+    {
+      "task": "reasoning",
+      "match": [
+        "prove",
+        "calculate",
+        "solve",
+        "math",
+        "compare",
+        "which",
+        "cheaper"
+      ],
+      "models": {
+        "cost": "deepseek-ai/DeepSeek-V4-Flash",
+        "balanced": "deepseek-ai/DeepSeek-V4-Pro",
+        "quality": "deepseek-ai/DeepSeek-V4-Pro"
+      },
+      "fallbacks": [
+        "zai-org/GLM-5.3"
+      ]
+    },
+    {
+      "task": "summarization",
+      "match": [
+        "summarize",
+        "summary",
+        "tl;dr",
+        "tldr"
+      ],
+      "models": {
+        "cost": "XiaomiMiMo/MiMo-V2.5",
+        "balanced": "deepseek-ai/DeepSeek-V4-Flash",
+        "quality": "zai-org/GLM-5.3"
+      },
+      "fallbacks": [
+        "moonshotai/Kimi-K2.6"
+      ]
+    },
+    {
+      "task": "general_qa",
+      "match": [],
+      "models": {
+        "cost": "XiaomiMiMo/MiMo-V2.5",
+        "balanced": "deepseek-ai/DeepSeek-V4-Flash",
+        "quality": "deepseek-ai/DeepSeek-V4-Pro"
+      },
+      "fallbacks": [
+        "zai-org/GLM-5.3-Flash"
+      ]
+    }
+  ]
+}

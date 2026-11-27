@@ -1,0 +1,371 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Design tokens: T3 Code's dense layout in GMI Cloud's colours — lime (#DDEA4D, "GMI volt") on true black, GMI's
+ * neutral grey scale (gmicloud.ai: --gray-01…09), crisp 6px corners, Geist Mono for technical micro-labels.
+ *
+ * Lime is a fill colour: --primary for buttons, badges, bars and focus, always with black text on top
+ * (--primary-foreground). Text and icons that should read as "brand" use --primary-ink: lime itself on dark
+ * surfaces, a deep olive on light ones (lime on white is 1.3:1). --brand-* are GMI's secondary limes for charts.
+ */
+:root {
+  color-scheme: light;
+  --background: #fcfcfc;
+  --foreground: #0a0a0a;
+  --sidebar: #f6f6f6;
+  --sidebar-foreground: #262626;
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0a;
+  --muted: #f0f0f0;
+  --muted-foreground: #6b6b6b;
+  --accent: #efefef;
+  --accent-foreground: #0a0a0a;
+  --secondary: #f0f0f0;
+  --secondary-foreground: #0a0a0a;
+  --secondary-hover: #e6e6e6;
+  --border: #e5e5e5;
+  --input: #dadada;
+  --primary: #ddea4d;
+  --primary-foreground: #0a0a0a;
+  --primary-ink: #5c6a00;
+  /* Hovered lime: a touch deeper on white, a touch brighter on black. */
+  --primary-hover: #d2df3f;
+  --ring: #5c6a00;
+  --brand-lime: #ddea4d;
+  --brand-olive: #99a22f;
+  --brand-moss: #4a4f17;
+  --destructive: #dc2626;
+  /* --success: rare verification states only; brand-positive states (OK, valid, signed in, done, deals) are
+     --primary / --primary-ink. Hue 135: a leaf green next to GMI's lime (hue 114), so it never reads as a second
+     brand green. --success / --warning are for icons and fills. Small text uses the -foreground tokens: on the
+     light theme the fills are only ~3:1 against the page, the text tokens are >= 4.5:1 (WCAG AA) on the page,
+     cards and the tinted badge/callout backgrounds (bg-warning/20, bg-success/15 and lighter). */
+  --success: oklch(0.62 0.155 135);
+  --success-foreground: oklch(0.47 0.115 135);
+  --warning: #d97706;
+  --warning-foreground: oklch(0.52 0.15 47.5);
+  --radius: 0.375rem;
+  /* Lime buttons need an edge on white. */
+  --primary-edge: inset 0 0 0 1px rgb(0 0 0 / 0.1);
+  /* Outline buttons: transparent on white, a faint lift on black. */
+  --outline-fill: transparent;
+  /* GMI's faint grid floor (behind Dino in empty states, the boot splash); also the colour `grid-line`. */
+  --grid-line: rgb(0 0 0 / 0.055);
+  --scrollbar: rgb(0 0 0 / 0.16);
+  --scrollbar-hover: rgb(0 0 0 / 0.3);
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #000000;
+  --foreground: #fafafa;
+  --sidebar: #0a0a0a;
+  --sidebar-foreground: #e5e5e5;
+  --card: #0d0d0d;
+  --card-foreground: #fafafa;
+  --popover: #121212;
+  --popover-foreground: #fafafa;
+  --muted: #171717;
+  --muted-foreground: #a3a3a3;
+  --accent: rgb(255 255 255 / 6.5%);
+  --accent-foreground: #fafafa;
+  --secondary: #171717;
+  --secondary-foreground: #fafafa;
+  --secondary-hover: #212121;
+  --border: rgb(255 255 255 / 9%);
+  --input: rgb(255 255 255 / 12%);
+  --primary: #ddea4d;
+  --primary-foreground: #0a0a0a;
+  --primary-ink: #ddea4d;
+  --primary-hover: #e5f070;
+  --ring: #ddea4d;
+  --destructive: #ef4444;
+  --success: oklch(0.77 0.155 135);
+  --success-foreground: var(--success);
+  --warning: #f59e0b;
+  --warning-foreground: var(--warning);
+  --primary-edge: inset 0 0 0 1px rgb(255 255 255 / 0.12);
+  --outline-fill: rgb(255 255 255 / 0.015);
+  --grid-line: rgb(255 255 255 / 0.06);
+  --scrollbar: rgb(255 255 255 / 0.14);
+  --scrollbar-hover: rgb(255 255 255 / 0.28);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-ink: var(--primary-ink);
+  --color-primary-hover: var(--primary-hover);
+  --color-brand-lime: var(--brand-lime);
+  --color-brand-olive: var(--brand-olive);
+  --color-brand-moss: var(--brand-moss);
+  --color-ring: var(--ring);
+  --color-grid-line: var(--grid-line);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1rem;
+  --text-3xs: 0.625rem;
+  --text-3xs--line-height: 0.875rem;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --spacing-topbar: 3.25rem;
+  --spacing-chat: 46rem;
+  --spacing-details: 17.5rem;
+  --container-chat: 46rem;
+  --container-details: 17.5rem;
+
+  /* Motion (Emil Kowalski's curves): strong ease-out for enter/exit, ease-in-out for on-screen movement. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-border);
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.45;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--color-primary) 38%, transparent);
+  }
+  button {
+    cursor: default;
+  }
+  :focus-visible {
+    outline: 2px solid color-mix(in oklch, var(--color-ring) 70%, transparent);
+    outline-offset: 1px;
+  }
+  /* Thin, quiet scrollbars: a 4px pill inside a 10px gutter that darkens on hover. (The standard
+     scrollbar-width/-color properties would switch these off in Chromium, so they are not set.) */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar);
+    background-clip: content-box;
+    border: 3px solid transparent;
+    border-radius: 9999px;
+    min-height: 32px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-hover);
+  }
+}
+
+/*
+ * GMI's faint grid floor (1px --grid-line lines), fading out from the centre (empty states). Pair with a sized,
+ * positioned, aria-hidden box. Knobs (CSS variables, set with Tailwind arbitrary properties):
+ *   --grid-cell  cell size, default 16px           e.g. [--grid-cell:40px]
+ *   --grid-fade  the mask, default a centred ellipse e.g. [--grid-fade:radial-gradient(ellipse_90%_120%_at_100%_100%,#000_15%,transparent_75%)]
+ */
+@utility grid-floor {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: var(--grid-cell, 16px) var(--grid-cell, 16px);
+  background-position: center center;
+  -webkit-mask-image: var(--grid-fade, radial-gradient(ellipse 50% 50% at 50% 50%, #000 15%, transparent 100%));
+  mask-image: var(--grid-fade, radial-gradient(ellipse 50% 50% at 50% 50%, #000 15%, transparent 100%));
+}
+
+/*
+ * Motion: only occasional UI animates (dialogs, popovers, menus, tooltips, switches, button presses) with
+ * opacity + scale, ease-out, 90–200 ms, exits faster than enters. Recipes: components/ui/motion.ts.
+ * Reduced motion: nothing grows, shrinks or scrolls smoothly; the short opacity and colour fades stay
+ * because they explain what appeared or changed. Spinners and skeleton pulses are kept (status, not decoration).
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  /* Base UI enter/exit states (dialogs, popovers, menus, tooltips, anything built on them) fade only,
+     and press feedback is colour only. */
+  [data-starting-style],
+  [data-ending-style],
+  :is(button, a, [role='button'], [role='switch'], [role='tab'], [role='menuitem']):active {
+    scale: none !important;
+  }
+}
+
+/* Markdown (chat replies, model descriptions). */
+.gmi-markdown {
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.gmi-markdown > * + * {
+  margin-top: 0.75em;
+}
+.gmi-markdown h1,
+.gmi-markdown h2,
+.gmi-markdown h3,
+.gmi-markdown h4 {
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin-top: 1.3em;
+}
+.gmi-markdown > :first-child {
+  margin-top: 0;
+}
+.gmi-markdown h1 {
+  font-size: 1.35em;
+}
+.gmi-markdown h2 {
+  font-size: 1.2em;
+}
+.gmi-markdown h3 {
+  font-size: 1.05em;
+}
+.gmi-markdown strong {
+  font-weight: 600;
+}
+.gmi-markdown ul,
+.gmi-markdown ol {
+  padding-left: 1.4em;
+}
+.gmi-markdown ul {
+  list-style: disc;
+}
+.gmi-markdown ol {
+  list-style: decimal;
+}
+.gmi-markdown li::marker {
+  color: var(--color-muted-foreground);
+}
+.gmi-markdown ol > li::marker {
+  font-variant-numeric: tabular-nums;
+}
+.gmi-markdown li + li {
+  margin-top: 0.25em;
+}
+/* Loose lists (blank lines between items) wrap each item's blocks in <p>, <blockquote>, <pre>…: keep an item's
+   blocks close together and the items themselves a paragraph apart, so each item reads as one group. */
+.gmi-markdown li > * + * {
+  margin-top: 0.35em;
+}
+.gmi-markdown li:has(> p) + li {
+  margin-top: 0.75em;
+}
+.gmi-markdown blockquote > * + * {
+  margin-top: 0.75em;
+}
+.gmi-markdown a {
+  color: var(--color-primary-ink);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklch, var(--color-primary-ink) 45%, transparent);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 150ms var(--ease-out);
+}
+.gmi-markdown a:hover {
+  text-decoration-color: var(--color-primary-ink);
+}
+.gmi-markdown code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: var(--color-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 0.05em 0.35em;
+}
+.gmi-markdown pre {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  line-height: 1.6;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 0.8em 0.95em;
+  overflow-x: auto;
+}
+.gmi-markdown pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+}
+.gmi-markdown blockquote {
+  border-left: 2px solid var(--color-input);
+  padding-left: 0.9em;
+  color: var(--color-muted-foreground);
+}
+/* Tables: Markdown.tsx wraps each one in a bordered, horizontally scrolling frame; inside, rows are split by
+   hairlines only (no cell grid). */
+.gmi-markdown table {
+  border-collapse: collapse;
+  font-size: 0.92em;
+  font-variant-numeric: tabular-nums;
+}
+.gmi-markdown th,
+.gmi-markdown td {
+  border: 0;
+  padding: 0.4em 0.7em;
+  text-align: left;
+}
+.gmi-markdown td {
+  border-top: 1px solid var(--color-border);
+}
+.gmi-markdown th {
+  background: var(--color-muted);
+  font-weight: 500;
+}
+.gmi-markdown hr {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  margin-block: 1.25em;
+}

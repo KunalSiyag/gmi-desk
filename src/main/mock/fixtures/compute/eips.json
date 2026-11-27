@@ -1,0 +1,14 @@
+{
+  "_note": "Synthetic GET /api/v1/elastic-ips rows (TEST-NET-3 addresses only).",
+  "base": [
+    { "id": "00000000-0000-4000-8000-00000000e001", "orgId": "00000000-0000-0000-0000-000000000000", "idc": "asia-east-taiwan3", "name": "gmid-{inst6}-h200-notebook-a7k2qp-eip", "ipAddress": "203.0.113.10", "product": "gmi.eip.sole.shared", "status": "associated", "internetConnectionType": "BGP", "maxBandwidth": "10 Gbps", "instanceID": "00000000-0000-4000-8000-00000000d001", "instanceType": "container" }
+  ],
+  "flags": {
+    "eip_orphan": [
+      { "id": "00000000-0000-4000-8000-00000000e002", "orgId": "00000000-0000-0000-0000-000000000000", "idc": "asia-east-taiwan1", "name": "gmid-{inst6}-old-box-r2k7mz-eip", "ipAddress": "203.0.113.24", "product": "gmi.eip.sole.shared", "status": "disassociated", "internetConnectionType": "BGP", "maxBandwidth": "10 Gbps", "instanceID": null, "instanceType": null }
+    ],
+    "org_billing": [
+      { "id": "00000000-0000-4000-8000-00000000e003", "orgId": "00000000-0000-0000-0000-000000000000", "idc": "asia-east-taiwan3", "name": "research-box-ip", "ipAddress": "203.0.113.31", "product": "gmi.eip.sole.shared", "status": "associated", "internetConnectionType": "BGP", "maxBandwidth": "10 Gbps", "instanceID": "00000000-0000-4000-8000-00000000d004", "instanceType": "container" }
+    ]
+  }
+}

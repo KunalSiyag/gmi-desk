@@ -1,0 +1,18 @@
+{
+  "_note": "Synthetic container log (GET /api/v1/containers/{id}/logs is text/plain; kept as JSON lines because the main bundle has no text loader).",
+  "lines": [
+    "[I 2026-11-02 09:12:01.204 ServerApp] jupyterlab | extension was successfully linked.",
+    "[I 2026-11-02 09:12:01.388 ServerApp] Writing Jupyter server cookie secret to /root/.local/share/jupyter/runtime/jupyter_cookie_secret",
+    "[I 2026-11-02 09:12:01.905 ServerApp] Serving notebooks from local directory: /root",
+    "[I 2026-11-02 09:12:01.905 ServerApp] Jupyter Server 2.14.2 is running at:",
+    "[I 2026-11-02 09:12:01.905 ServerApp] http://0.0.0.0:8888/lab",
+    "[I 2026-11-02 09:12:01.906 ServerApp] Use Control-C to stop this server and shut down all kernels.",
+    "Server listening on 0.0.0.0 port 22.",
+    "[I 2026-11-02 09:40:17.311 ServerApp] Kernel started: 6f1d1c1e-0000-4000-8000-000000000001",
+    "epoch 1/3  loss 2.4123  lr 3.0e-04  step 100/900",
+    "epoch 1/3  loss 1.9877  lr 3.0e-04  step 200/900",
+    "epoch 1/3  loss 1.7350  lr 3.0e-04  step 300/900",
+    "epoch 2/3  loss 1.5021  lr 2.4e-04  step 400/900",
+    "epoch 2/3  loss 1.4116  lr 2.4e-04  step 500/900"
+  ]
+}

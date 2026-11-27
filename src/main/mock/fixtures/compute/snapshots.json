@@ -1,0 +1,6 @@
+{
+  "_note": "Synthetic GET /api/v2/snapshots items.",
+  "items": [
+    { "snapshot_id": "snp-mock-0001", "idc_name": "us-central-iowa2", "name": "gmid-notebook-baseline", "status": "ready", "source_sandbox_id": "sbx-mock-0001", "vcpu": 2, "ram_mb": 4096, "disk_size_mb": 20480, "architecture": "x86_64", "product": "gmi.sandbox.small", "metadata": { "app": "gmi-desk", "inst": "{inst}" }, "ready_at": "{ago:3d}", "created_at": "{ago:3d}", "updated_at": "{ago:3d}" }
+  ]
+}

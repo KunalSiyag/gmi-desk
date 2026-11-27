@@ -1,0 +1,14 @@
+{
+  "_note": "Synthetic GET /api/v2/sandboxes/{id} details. `{inst}` is this install's label (C1-C), `{ago:…}` / `{in:…}` are times relative to now. `rid` cr_mock_sb1 is the id the screenshot specs open. No tokens here: the simulator mints fake ones at runtime.",
+  "base": [
+    { "id": "sbx-mock-0001", "sandbox_key": "mk0001", "template_id": "tpl-mock-python", "idc_name": "us-central-iowa2", "state": "running", "product": "gmi.sandbox.small", "product_name": "SMALL", "resources": { "vcpu": 2, "memory_mb": 4096, "disk_mb": 20480 }, "metadata": { "app": "gmi-desk", "inst": "{inst}", "rid": "cr_mock_sb1", "purpose": "computer" }, "created_at": "{ago:40m}", "running_at": "{ago:39m}", "started_at": "{ago:39m}", "end_at": "{in:20m}", "domain": "us-central-iowa2.sandbox.mock.invalid", "lifecycle": { "auto_resume": false, "on_timeout": "pause" }, "egress_control": false }
+  ],
+  "flags": {
+    "paused": [
+      { "id": "sbx-mock-0002", "sandbox_key": "mk0002", "template_id": "tpl-mock-node", "idc_name": "us-central-iowa2", "state": "paused", "product": "gmi.sandbox.small", "product_name": "SMALL", "resources": { "vcpu": 2, "memory_mb": 4096, "disk_mb": 20480 }, "metadata": { "app": "gmi-desk", "inst": "{inst}", "rid": "cr_mock_sb2", "purpose": "computer" }, "created_at": "{ago:30h}", "running_at": "{ago:30h}", "started_at": "{ago:30h}", "end_at": "{ago:25h}", "paused_at": "{ago:26h}", "paused_expire_at": "{in:6d}", "pause": { "code": "Sandbox.UserPaused", "initiator": "lifecycle", "message": "Paused when idle.", "requested_at": "{ago:26h}" }, "domain": "us-central-iowa2.sandbox.mock.invalid", "lifecycle": { "auto_resume": false, "on_timeout": "pause" }, "egress_control": false }
+    ],
+    "orphan": [
+      { "id": "sbx-mock-0003", "sandbox_key": "mk0003", "template_id": "tpl-mock-python", "idc_name": "us-central-iowa2", "state": "running", "product": "gmi.sandbox.medium", "product_name": "MEDIUM", "resources": { "vcpu": 2, "memory_mb": 8192, "disk_mb": 40960 }, "metadata": { "app": "gmi-desk", "inst": "{inst}", "rid": "cr_mock_sb3", "purpose": "agent" }, "created_at": "{ago:5h}", "running_at": "{ago:5h}", "started_at": "{ago:5h}", "end_at": "{in:3h}", "domain": "us-central-iowa2.sandbox.mock.invalid", "lifecycle": { "auto_resume": false, "on_timeout": "kill" }, "egress_control": true, "egress": { "allowed_hostnames": [], "allowed_cidrs": [] } }
+    ]
+  }
+}

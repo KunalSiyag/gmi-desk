@@ -1,0 +1,312 @@
+{
+  "note": "Mock-mode seed for this device's spend ledger (fake amounts). dayFraction is the share of that local day (of the elapsed part for today).",
+  "budget": {
+    "dailyUsd": 5,
+    "monthlyUsd": 100,
+    "confirmAboveUsd": 0.5,
+    "enforce": true
+  },
+  "entries": [
+    {
+      "daysAgo": 0,
+      "dayFraction": 0.15,
+      "kind": "media",
+      "modelId": "seedance-2-5-260628",
+      "usd": 1.155
+    },
+    {
+      "daysAgo": 0,
+      "dayFraction": 0.3,
+      "kind": "chat",
+      "modelId": "openai/gpt-6.1-sol",
+      "usd": 0.0412
+    },
+    {
+      "daysAgo": 0,
+      "dayFraction": 0.42,
+      "kind": "media",
+      "modelId": "wan3.0-video",
+      "usd": 1.6
+    },
+    {
+      "daysAgo": 0,
+      "dayFraction": 0.55,
+      "kind": "chat",
+      "modelId": "deepseek-ai/DeepSeek-V4-Pro",
+      "usd": 0.0187
+    },
+    {
+      "daysAgo": 0,
+      "dayFraction": 0.68,
+      "kind": "media",
+      "modelId": "gemini-3-pro-image",
+      "usd": 0.536
+    },
+    {
+      "daysAgo": 0,
+      "dayFraction": 0.8,
+      "kind": "chat",
+      "modelId": "moonshotai/kimi-k3",
+      "usd": 0.3126
+    },
+    {
+      "daysAgo": 0,
+      "dayFraction": 0.88,
+      "kind": "media",
+      "modelId": "hy-image-v3.5-preview",
+      "usd": 0.096
+    },
+    {
+      "daysAgo": 0,
+      "dayFraction": 0.95,
+      "kind": "chat",
+      "modelId": "openai/gpt-6-astra",
+      "usd": 0.452
+    },
+    {
+      "daysAgo": 1,
+      "dayFraction": 0.4,
+      "kind": "chat",
+      "modelId": "openai/gpt-6.1-sol",
+      "usd": 0.284
+    },
+    {
+      "daysAgo": 1,
+      "dayFraction": 0.6,
+      "kind": "media",
+      "modelId": "wan3.0-video",
+      "usd": 1.6
+    },
+    {
+      "daysAgo": 1,
+      "dayFraction": 0.7,
+      "kind": "chat",
+      "modelId": "google/gemini-4-argon",
+      "usd": 0.1975
+    },
+    {
+      "daysAgo": 2,
+      "dayFraction": 0.3,
+      "kind": "chat",
+      "modelId": "deepseek-ai/DeepSeek-V4-Pro",
+      "usd": 0.0631
+    },
+    {
+      "daysAgo": 2,
+      "dayFraction": 0.5,
+      "kind": "media",
+      "modelId": "seedance-2-5-260628",
+      "usd": 2.31
+    },
+    {
+      "daysAgo": 3,
+      "dayFraction": 0.45,
+      "kind": "media",
+      "modelId": "gpt-image-2.5-sunburst-generate",
+      "usd": 0.053
+    },
+    {
+      "daysAgo": 3,
+      "dayFraction": 0.62,
+      "kind": "chat",
+      "modelId": "Qwen/Qwen3.8-Max",
+      "usd": 0.0874
+    },
+    {
+      "daysAgo": 4,
+      "dayFraction": 0.5,
+      "kind": "media",
+      "modelId": "gemini-omni-1.1-flash-preview",
+      "usd": 0.8
+    },
+    {
+      "daysAgo": 4,
+      "dayFraction": 0.7,
+      "kind": "chat",
+      "modelId": "zai-org/GLM-5.3",
+      "usd": 0.0412
+    },
+    {
+      "daysAgo": 5,
+      "dayFraction": 0.33,
+      "kind": "media",
+      "modelId": "minimax-tts-speech-2.8-hd",
+      "usd": 0.12
+    },
+    {
+      "daysAgo": 5,
+      "dayFraction": 0.8,
+      "kind": "chat",
+      "modelId": "openai/gpt-6-astra",
+      "usd": 0.6105
+    },
+    {
+      "daysAgo": 6,
+      "dayFraction": 0.6,
+      "kind": "media",
+      "modelId": "hy-image-v3.5-preview",
+      "usd": 0.192
+    },
+    {
+      "daysAgo": 8,
+      "dayFraction": 0.5,
+      "kind": "media",
+      "modelId": "wan3.0-video",
+      "usd": 4
+    },
+    {
+      "daysAgo": 9,
+      "dayFraction": 0.4,
+      "kind": "chat",
+      "modelId": "openai/gpt-6.1-sol",
+      "usd": 0.912
+    },
+    {
+      "daysAgo": 11,
+      "dayFraction": 0.55,
+      "kind": "media",
+      "modelId": "seedance-2-5-260628",
+      "usd": 2.31
+    },
+    {
+      "daysAgo": 12,
+      "dayFraction": 0.3,
+      "kind": "media",
+      "modelId": "MiniMax-H3",
+      "usd": 1.3
+    },
+    {
+      "daysAgo": 14,
+      "dayFraction": 0.6,
+      "kind": "chat",
+      "modelId": "deepseek-ai/DeepSeek-V4-Pro",
+      "usd": 0.441
+    },
+    {
+      "daysAgo": 15,
+      "dayFraction": 0.5,
+      "kind": "media",
+      "modelId": "gemini-3-pro-image",
+      "usd": 1.072
+    },
+    {
+      "daysAgo": 17,
+      "dayFraction": 0.7,
+      "kind": "media",
+      "modelId": "wan3.0-video",
+      "usd": 2
+    },
+    {
+      "daysAgo": 18,
+      "dayFraction": 0.45,
+      "kind": "chat",
+      "modelId": "moonshotai/kimi-k3",
+      "usd": 0.7233
+    },
+    {
+      "daysAgo": 19,
+      "dayFraction": 0.5,
+      "kind": "media",
+      "modelId": "gemini-nano-banana-2.1",
+      "usd": 0.164
+    },
+    {
+      "daysAgo": 20,
+      "dayFraction": 0.5,
+      "kind": "media",
+      "modelId": "seedance-2-5-260628",
+      "usd": 3.465
+    },
+    {
+      "daysAgo": 22,
+      "dayFraction": 0.35,
+      "kind": "chat",
+      "modelId": "openai/gpt-6-astra",
+      "usd": 1.284
+    },
+    {
+      "daysAgo": 23,
+      "dayFraction": 0.6,
+      "kind": "media",
+      "modelId": "hy-image-v3.5-preview",
+      "usd": 0.48
+    },
+    {
+      "daysAgo": 25,
+      "dayFraction": 0.5,
+      "kind": "media",
+      "modelId": "gemini-omni-1.1-flash-preview",
+      "usd": 1
+    },
+    {
+      "daysAgo": 26,
+      "dayFraction": 0.4,
+      "kind": "chat",
+      "modelId": "google/gemini-4-argon",
+      "usd": 0.5466
+    },
+    {
+      "daysAgo": 27,
+      "dayFraction": 0.45,
+      "kind": "chat",
+      "modelId": "openai/gpt-6.1-sol",
+      "usd": 1.831
+    },
+    {
+      "daysAgo": 28,
+      "dayFraction": 0.55,
+      "kind": "media",
+      "modelId": "wan3.0-video",
+      "usd": 6
+    },
+    {
+      "daysAgo": 29,
+      "dayFraction": 0.5,
+      "kind": "chat",
+      "modelId": "Qwen/Qwen3.8-Max",
+      "usd": 0.3009
+    },
+    {
+      "daysAgo": 33,
+      "dayFraction": 0.5,
+      "kind": "media",
+      "modelId": "seedance-2-5-260628",
+      "usd": 2.31
+    },
+    {
+      "daysAgo": 40,
+      "dayFraction": 0.5,
+      "kind": "chat",
+      "modelId": "openai/gpt-6.1-sol",
+      "usd": 0.65
+    },
+    {
+      "daysAgo": 47,
+      "dayFraction": 0.5,
+      "kind": "media",
+      "modelId": "wan3.0-video",
+      "usd": 3.2
+    },
+    {
+      "daysAgo": 55,
+      "dayFraction": 0.5,
+      "kind": "chat",
+      "modelId": "deepseek-ai/DeepSeek-V4-Pro",
+      "usd": 0.33
+    },
+    {
+      "daysAgo": 63,
+      "dayFraction": 0.5,
+      "kind": "media",
+      "modelId": "gemini-3-pro-image",
+      "usd": 0.804
+    },
+    {
+      "daysAgo": 78,
+      "dayFraction": 0.5,
+      "kind": "chat",
+      "modelId": "moonshotai/kimi-k3",
+      "usd": 0.41
+    }
+  ]
+}

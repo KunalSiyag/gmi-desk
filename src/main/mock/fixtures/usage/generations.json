@@ -1,0 +1,285 @@
+{
+  "recorded": "2026-10-31 shape of MCP list_generations; request ids are random, created_at = now - ago_hours",
+  "generations": [
+    {
+      "ago_hours": 0.1,
+      "model_id": "MiniMax-H3",
+      "modality": "video",
+      "request_id": "9d7aa637-875a-4e32-a9a5-1fe07ac87141",
+      "status": "processing"
+    },
+    {
+      "ago_hours": 0.4,
+      "model_id": "seedance-2-5-260628",
+      "modality": "video",
+      "request_id": "0108f9db-9e06-4267-b2fe-f692322c55ac",
+      "status": "success"
+    },
+    {
+      "ago_hours": 1.2,
+      "model_id": "gemini-3-pro-image",
+      "modality": "image",
+      "request_id": "7d98a182-096f-4e9f-8811-0c8360b4f725",
+      "status": "success"
+    },
+    {
+      "ago_hours": 2.5,
+      "model_id": "hy-image-v3.5-preview",
+      "modality": "image",
+      "request_id": "143545d5-1a70-4e26-a08e-c707c3da81e4",
+      "status": "success"
+    },
+    {
+      "ago_hours": 2.6,
+      "model_id": "hy-image-v3.5-preview",
+      "modality": "image",
+      "request_id": "c7cde237-9383-4b79-b9e8-febb5efb4407",
+      "status": "failed"
+    },
+    {
+      "ago_hours": 6,
+      "model_id": "minimax-tts-speech-2.8-hd",
+      "modality": "audio",
+      "request_id": "7f2582a7-3912-4ed5-8a22-074365e86e6d",
+      "status": "success"
+    },
+    {
+      "ago_hours": 21,
+      "model_id": "inworld-tts-2-flash",
+      "modality": "audio",
+      "request_id": "5577e59a-19c6-43ae-8a79-c0aef7bb0ac6",
+      "status": "success"
+    },
+    {
+      "ago_hours": 28,
+      "model_id": "wan3.0-video",
+      "modality": "video",
+      "request_id": "4f7dbdf2-00e7-4572-a4c8-0b29988e011b",
+      "status": "success"
+    },
+    {
+      "ago_hours": 30,
+      "model_id": "wan3.0-video",
+      "modality": "video",
+      "request_id": "ce50c003-7bbc-4311-81d8-5fa4fa72f921",
+      "status": "failed"
+    },
+    {
+      "ago_hours": 31,
+      "model_id": "wan3.0-video",
+      "modality": "video",
+      "request_id": "a96853da-365d-4ab3-ae05-81259d660a60",
+      "status": "success"
+    },
+    {
+      "ago_hours": 50,
+      "model_id": "gpt-image-2.5-sunburst-generate",
+      "modality": "image",
+      "request_id": "bad041f3-b7fa-40c9-8e20-5271a74c2e2b",
+      "status": "success"
+    },
+    {
+      "ago_hours": 52,
+      "model_id": "gpt-image-2.5-sunburst-generate",
+      "modality": "image",
+      "request_id": "fd55f119-720f-4949-8fe6-652ab06b7f0c",
+      "status": "failed"
+    },
+    {
+      "ago_hours": 75,
+      "model_id": "gemini-nano-banana-2.1",
+      "modality": "image",
+      "request_id": "96398fe0-542b-4634-aec9-5e516ad1c27a",
+      "status": "success"
+    },
+    {
+      "ago_hours": 76,
+      "model_id": "gemini-nano-banana-2.1",
+      "modality": "image",
+      "request_id": "29c1b61c-c683-47a5-9990-ae8bc526739d",
+      "status": "success"
+    },
+    {
+      "ago_hours": 100,
+      "model_id": "minimax-music-3.0",
+      "modality": "audio",
+      "request_id": "bfd2e76e-d870-4304-9026-575f5d933d36",
+      "status": "success"
+    },
+    {
+      "ago_hours": 101,
+      "model_id": "minimax-music-3.0",
+      "modality": "audio",
+      "request_id": "86795241-6bb5-484f-8ef0-25a6a3e9ed16",
+      "status": "cancelled"
+    },
+    {
+      "ago_hours": 120,
+      "model_id": "hy-image-v3.5-preview",
+      "modality": "image",
+      "request_id": "bdc08b60-1d98-4406-9212-ff26823202f7",
+      "status": "success"
+    },
+    {
+      "ago_hours": 140,
+      "model_id": "inworld-tts-2-flash",
+      "modality": "audio",
+      "request_id": "38ae3f77-faa8-4445-bb5b-401aa055cebb",
+      "status": "success"
+    },
+    {
+      "ago_hours": 180,
+      "model_id": "hy-image-v3.5-preview",
+      "modality": "image",
+      "request_id": "a083d611-4141-4bb4-84bd-8e75913cb30e",
+      "status": "success"
+    },
+    {
+      "ago_hours": 181,
+      "model_id": "hy-image-v3.5-preview",
+      "modality": "image",
+      "request_id": "1a1ff036-e77f-4240-b83a-8720abe0e590",
+      "status": "success"
+    },
+    {
+      "ago_hours": 182,
+      "model_id": "hy-image-v3.5-preview",
+      "modality": "image",
+      "request_id": "d52a6f48-b3cb-49e4-81fe-09621f9ba882",
+      "status": "success"
+    },
+    {
+      "ago_hours": 200,
+      "model_id": "gemini-omni-1.1-flash-preview",
+      "modality": "video",
+      "request_id": "c6ba6dd8-2618-4d08-909d-eb7199ac6d64",
+      "status": "success"
+    },
+    {
+      "ago_hours": 230,
+      "model_id": "gemini-omni-1.1-flash-preview",
+      "modality": "video",
+      "request_id": "587cf9b3-6e02-4772-afb2-ba188d9d84f7",
+      "status": "success"
+    },
+    {
+      "ago_hours": 260,
+      "model_id": "seedance-2-5-260628",
+      "modality": "video",
+      "request_id": "e6c4a9f6-09c5-4c9c-a563-9ef6fff29fd2",
+      "status": "success"
+    },
+    {
+      "ago_hours": 261,
+      "model_id": "seedance-2-5-260628",
+      "modality": "video",
+      "request_id": "b36a21be-9a9c-4e02-b938-7708e402149a",
+      "status": "success"
+    },
+    {
+      "ago_hours": 300,
+      "model_id": "minimax-tts-speech-2.8-hd",
+      "modality": "audio",
+      "request_id": "9b18f723-9b85-4446-ab7b-e91217407844",
+      "status": "success"
+    },
+    {
+      "ago_hours": 301,
+      "model_id": "minimax-tts-speech-2.8-hd",
+      "modality": "audio",
+      "request_id": "fce2c02c-d635-4f62-a092-4d2b089862d7",
+      "status": "success"
+    },
+    {
+      "ago_hours": 330,
+      "model_id": "inworld-tts-2-flash",
+      "modality": "audio",
+      "request_id": "3bb987c9-f5ea-459e-82fb-5c607e965447",
+      "status": "success"
+    },
+    {
+      "ago_hours": 331,
+      "model_id": "inworld-tts-2-flash",
+      "modality": "audio",
+      "request_id": "696a9721-11b3-4f3f-a2ed-70af46fc1efe",
+      "status": "success"
+    },
+    {
+      "ago_hours": 400,
+      "model_id": "hy-image-v3.5-preview",
+      "modality": "image",
+      "request_id": "22f3af84-94a5-4b19-b577-e02967e5a53d",
+      "status": "success"
+    },
+    {
+      "ago_hours": 401,
+      "model_id": "hy-image-v3.5-preview",
+      "modality": "image",
+      "request_id": "51dba111-7365-4160-9b6a-69e66bb221b8",
+      "status": "failed"
+    },
+    {
+      "ago_hours": 450,
+      "model_id": "gemini-3-pro-image",
+      "modality": "image",
+      "request_id": "bd61a857-1cc6-40fd-bf42-a3f701c24ec2",
+      "status": "success"
+    },
+    {
+      "ago_hours": 451,
+      "model_id": "gemini-3-pro-image",
+      "modality": "image",
+      "request_id": "cbc04687-2d53-4246-a9ad-eb463170f80c",
+      "status": "success"
+    },
+    {
+      "ago_hours": 452,
+      "model_id": "gemini-3-pro-image",
+      "modality": "image",
+      "request_id": "5cc5f604-cc40-49aa-bfb6-3c0fbf06aaaa",
+      "status": "success"
+    },
+    {
+      "ago_hours": 500,
+      "model_id": "gpt-image-2.5-sunburst-generate",
+      "modality": "image",
+      "request_id": "b74e4817-1ebd-4bd9-a07b-c41559dae3f3",
+      "status": "success"
+    },
+    {
+      "ago_hours": 560,
+      "model_id": "wan3.0-video",
+      "modality": "video",
+      "request_id": "96cdb993-9b06-4e8f-b433-6fcbee4c47da",
+      "status": "success"
+    },
+    {
+      "ago_hours": 600,
+      "model_id": "minimax-tts-speech-2.8-hd",
+      "modality": "audio",
+      "request_id": "0a027c5a-ae7b-4d43-9fab-01a8d9b10055",
+      "status": "success"
+    },
+    {
+      "ago_hours": 640,
+      "model_id": "gemini-nano-banana-2.1",
+      "modality": "image",
+      "request_id": "34bc61dc-831e-4ff4-9f4f-21e5753ed42c",
+      "status": "success"
+    },
+    {
+      "ago_hours": 680,
+      "model_id": "hy-image-v3.5-preview",
+      "modality": "image",
+      "request_id": "a3a732c3-a371-4cca-b468-d0be6aa43db6",
+      "status": "success"
+    },
+    {
+      "ago_hours": 700,
+      "model_id": "hy-image-v3.5-preview",
+      "modality": "image",
+      "request_id": "39fabbcf-c48e-40ef-b0c4-8ccf2db92498",
+      "status": "success"
+    }
+  ]
+}

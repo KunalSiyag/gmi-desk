@@ -1,0 +1,18 @@
+{
+  "_note": "Synthetic GET /api/v1/containers rows. `{inst6}` is replaced at runtime by this install's tag (C1-C names.ts). Env values are redacted placeholders; IPs are TEST-NET-3 (203.0.113.0/24). `flags` rows are added only when that GMI_DESK_MOCK_COMPUTE flag is set.",
+  "base": [
+    { "id": "00000000-0000-4000-8000-00000000d001", "orgId": "00000000-0000-0000-0000-000000000000", "name": "gmid-{inst6}-h200-notebook-a7k2qp", "idc": "asia-east-taiwan3", "product": "gmi.container.nv.H200x1.tw3", "templateId": "00000000-0000-4000-8000-00000000a001", "status": "running", "reason": "", "createdAt": "{ago:150m}", "modifiedAt": "{ago:148m}", "envs": [ { "name": "JUPYTER_TOKEN", "value": "[redacted]" } ], "ports": [ { "containerPort": 22, "port": 30022, "protocol": "TCP" }, { "containerPort": 8888, "port": 30888, "protocol": "TCP" } ], "sshKeyIdList": [], "storages": [], "firewalls": ["00000000-0000-4000-8000-00000000f002"], "eipId": "00000000-0000-4000-8000-00000000e001", "eipAddress": "203.0.113.10", "publicIP": { "ipAddress": "203.0.113.10", "status": "ready" } }
+  ],
+  "flags": {
+    "orphan": [
+      { "id": "00000000-0000-4000-8000-00000000d002", "orgId": "00000000-0000-0000-0000-000000000000", "name": "gmid-{inst6}-cpu-scratch-q3m7vt", "idc": "us-central-iowa1", "product": "gmi.container.intel.x4660.large", "templateId": "00000000-0000-4000-8000-00000000a004", "status": "running", "reason": "", "createdAt": "{ago:26h}", "modifiedAt": "{ago:26h}", "envs": [], "ports": [], "storages": [] }
+    ],
+    "orphan_other_install": [
+      { "id": "00000000-0000-4000-8000-00000000d003", "orgId": "00000000-0000-0000-0000-000000000000", "name": "gmid-zzzzzz-finetune-x4n2rd", "idc": "asia-east-taiwan1", "product": "gmi.container.nv.H100x1.tw1", "templateId": "00000000-0000-4000-8000-00000000a001", "status": "running", "reason": "", "createdAt": "{ago:9h}", "modifiedAt": "{ago:9h}", "envs": [], "ports": [], "storages": [] }
+    ],
+    "org_billing": [
+      { "id": "00000000-0000-4000-8000-00000000d004", "orgId": "00000000-0000-0000-0000-000000000000", "name": "research-box", "idc": "asia-east-taiwan3", "product": "gmi.container.nv.H200x8.tw3", "templateId": "00000000-0000-4000-8000-00000000a002", "status": "running", "reason": "", "createdAt": "{ago:3d}", "modifiedAt": "{ago:3d}", "envs": [ { "name": "HF_TOKEN", "value": "[redacted]" } ], "ports": [], "storages": [] },
+      { "id": "00000000-0000-4000-8000-00000000d005", "orgId": "00000000-0000-0000-0000-000000000000", "name": "eval-runner", "idc": "us-central-iowa1", "product": "gmi.container.intel.x4660.large", "templateId": "00000000-0000-4000-8000-00000000a004", "status": "error", "reason": "Back-off pulling image", "createdAt": "{ago:2d}", "modifiedAt": "{ago:2d}", "envs": [], "ports": [], "storages": [] }
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+{"content":"<project-instructions>\n# AGENTS.md\n# Demo\nRun `npm test` before you finish.\n</project-instructions>\n\n<environment>\nos: linux\nshell: bash\nrepository: demo\nworktree: /work/.worktrees/c0de0000-0000-4000-8000-00000000000a\nbase branch: main\nbranch: gmi/c0de00/fix\ntools: rg\nsandbox: bwrap, network proxy\n</environment>","role":"user"}

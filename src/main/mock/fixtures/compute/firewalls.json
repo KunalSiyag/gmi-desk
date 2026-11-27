@@ -1,0 +1,7 @@
+{
+  "_note": "Synthetic GET /api/v1/firewalls rows. The preset is GMI's immutable All Open firewall; the managed one allows SSH from one TEST-NET-3 address.",
+  "items": [
+    { "id": "00000000-0000-4000-8000-00000000f001", "orgId": "00000000-0000-0000-0000-000000000000", "idc": "asia-east-taiwan3", "name": "All Open", "inboundRules": [ { "protocol": "any", "remoteIpPrefix": "0.0.0.0/0" } ], "isPreset": true, "status": "active", "assoInstances": [], "assoContainers": [] },
+    { "id": "00000000-0000-4000-8000-00000000f002", "orgId": "00000000-0000-0000-0000-000000000000", "idc": "asia-east-taiwan3", "name": "gmid-{inst6}-h200-notebook-a7k2qp-fw", "inboundRules": [ { "protocol": "tcp", "portRange": { "min": 22, "max": 22 }, "remoteIpPrefix": "203.0.113.7/32" } ], "isPreset": false, "status": "active", "assoInstances": [], "assoContainers": ["00000000-0000-4000-8000-00000000d001"] }
+  ]
+}
