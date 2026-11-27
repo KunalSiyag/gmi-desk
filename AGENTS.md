@@ -24,8 +24,8 @@ catalog, GMI Router, media generation, Studio workflows, later Agentbox) in one 
 the phased plan in docs/STATUS.md. They prefer concise, direct communication and want agents to proceed autonomously
 within the ground rules below.
 
-**State (2026-11-27):** prepared for publishing at github.com/kunalsiyag/gmi-desk (MIT, D29; not committed or pushed
-yet) after a design-polish pass with Emil Kowalski's rules; `npm run check` green: 3 typecheck projects, 3439 tests,
+**State (2026-11-27):** public at github.com/KunalSiyag/gmi-desk (MIT, D29; CI runs `npm run check` on every push and
+PR and was green on the first push) after a design-polish pass with Emil Kowalski's rules; `npm run check` green: 3 typecheck projects, 3439 tests,
 build. First version complete and verified offline — Welcome, Chat, Models, Create, Usage, Docs, Settings, Code,
 Compute. Earlier milestones: the first version was reviewed by a 4-lens adversarial review (53 verified findings, all fixed with regression tests). **Real account:**
 the user signed in once with `npm run dev` (2026-11-01 07:08 UTC): DCR → browser consent → token exchange → MCP catalog
@@ -222,8 +222,6 @@ read), `media/` (downloaded outputs, `uploads/`), `logs/main.log`, `exports/open
 
 ## Next steps (priority order; details in docs/STATUS.md)
 
-0. **Publish** (the user commits and pushes; docs/STATUS.md › Backlog 7): then watch the first CI run and enable
-   GitHub's private vulnerability reporting.
 1. **Live test with the user** (needs the user at the machine; if they are not available, do 2 first). The app logs
    only failures, so first add a dev-only response trace (docs/STATUS.md › Backlog 1). Then `npm run dev` (already
    signed in), set a budget, the user pastes an inference key in Settings, and, each one approved: one chat, one Auto
